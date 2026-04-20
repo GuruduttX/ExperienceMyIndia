@@ -21,7 +21,6 @@ import WhyChooseUs from "@/utils/WhyChooseUs"
 const HomePage = () => {
   return (
     <>
-      <div></div>
 
       <Navbar />
       <MobileNavWrapper />
