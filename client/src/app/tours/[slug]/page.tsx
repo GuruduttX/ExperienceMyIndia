@@ -1,3 +1,4 @@
+import DestinationRoutes from '@/components/TourPackage/DestinationRoutes'
 import KnowBeforeYouGo from '@/components/TourPackage/KnowBeforeYouGo'
 import PolicySection from '@/components/TourPackage/PolicySection'
 import ReviewSection from '@/components/TourPackage/ReviewSection'
@@ -26,7 +27,7 @@ const page = () => {
 
                         {/* LEFT CONTENT */}
                         <main className="sm:space-6 space-y-8">
-                            <TourOptions />
+                            <DestinationRoutes/>
                             <TripHighlights />
                             <TourItinerarySection />
                         </main>

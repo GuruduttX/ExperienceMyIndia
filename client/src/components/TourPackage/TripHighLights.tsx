@@ -10,11 +10,11 @@ const highlights = [
 
 export default function TripHighlights() {
     return (
-        <section className="w-full bg-white pb-10 px-6">
+        <section className="w-full bg-white pb-10 ">
             <div className="max-w-4xl mx-auto">
 
                 {/* Title */}
-                <h2 className="text-3xl md:text-4xl font-bold mb-10">
+                <h2 className="text-xl sm:text-2xl font-bold mb-10">
                     Trip Highlights
                 </h2>
 

@@ -36,20 +36,12 @@ const durations = [
     },
 ];
 
-const routes = [
-    "Jaipur → Udaipur",
-    "Jaipur → Udaipur → Jodhpur",
-];
-
-const stays = ["Standard", "Deluxe", "Luxury"];
 
 export default function TripOptions() {
     const [selectedDuration, setSelectedDuration] = useState(2);
-    const [selectedRoute, setSelectedRoute] = useState(1);
-    const [selectedStay, setSelectedStay] = useState(1);
 
     return (
-        <section className="w-full bg-white pb-5 px-6">
+        <section className="w-full bg-white pb-5 ">
             <div className="max-w-6xl mx-auto space-y-12">
 
                 {/* 🔥 Duration */}
@@ -98,51 +90,7 @@ export default function TripOptions() {
                     </div>
                 </div>
 
-                {/* 🔥 Routes */}
-                <div>
-                    <h3 className="text-2xl font-semibold mb-4">
-                        Destination Routes
-                    </h3>
-
-                    <div className="space-y-3">
-                        {routes.map((route, index) => (
-                            <div
-                                key={index}
-                                onClick={() => setSelectedRoute(index)}
-                                className={`px-5 py-3 rounded-xl cursor-pointer transition text-sm
-                ${selectedRoute === index
-                                        ? "bg-orange-50 text-orange-600 border border-orange-300"
-                                        : "bg-white/70 backdrop-blur-md border border-gray-200 hover:border-orange-200"
-                                    }`}
-                            >
-                                {route}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* 🔥 Stay */}
-                <div>
-                    <h3 className="text-2xl font-semibold mb-4">
-                        Stay Category
-                    </h3>
-
-                    <div className="flex gap-3">
-                        {stays.map((stay, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setSelectedStay(index)}
-                                className={`px-5 py-2 rounded-full text-sm font-medium transition duration-300
-                ${selectedStay === index
-                                        ? "bg-orange-500 text-white shadow-md"
-                                        : "bg-white border border-gray-200 hover:border-orange-300"
-                                    }`}
-                            >
-                                {stay}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                
 
             </div>
         </section>

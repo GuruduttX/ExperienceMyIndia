@@ -62,98 +62,108 @@ export default function TourHoverUpCarousel() {
     };
 
     return (
-        <section className="relative w-full py-20 bg-white overflow-hidden">
+      <section className="relative w-full py-20 bg-white overflow-hidden">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-semibold text-gray-900">
+            Explore{" "}
+            <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+              Top Tour Packages
+            </span>
+          </h2>
+        </div>
 
-            {/* Heading */}
-            <div className="text-center mb-14">
-                <h2 className="text-4xl font-semibold text-gray-900">
-                    Explore{" "}
-                    <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-                        Top Tour Packages
-                    </span>
-                </h2>
-            </div>
-
-            {/* Carousel */}
+        {/* Carousel */}
+        <div
+          ref={sliderRef}
+          className="flex items-center gap-4 md:gap-8 px-2 md:px-10 overflow-x-auto scrollbar-hide scroll-smooth  snap-x snap-mandatory"
+          onScroll={(e) => {
+            const target = e.target as HTMLDivElement;
+            const containerWidth = target.clientWidth;
+            const newIndex = Math.round(target.scrollLeft / containerWidth);
+            if (
+              newIndex !== active &&
+              newIndex >= 0 &&
+              newIndex < features.length
+            ) {
+              setActive(newIndex);
+            }
+          }}
+        >
+          {features.map((item, index) => (
             <div
-                ref={sliderRef}
-                className="flex items-center gap-8 px-10 overflow-x-auto scrollbar-hide scroll-smooth pt-13"
+              key={index}
+              className="relative rounded-3xl overflow-hidden transition-all duration-500 ease-out flex-shrink-0 cursor-pointer
+              w-[calc(100vw-1rem)] md:w-[400px]
+              h-[60vh] md:h-[480px]
+              md:hover:scale-105 md:hover:-translate-y-10 md:hover:shadow-orange-100 md:hover:shadow-xl
+              snap-center"
+              onClick={() => setActive(index)}
             >
-                {features.map((item, index) => {
-                    const isActive = index === active;
+              {/* Image */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
 
-                    return (
-                        <div
-                            key={index}
-                            className={`
-                                relative rounded-3xl overflow-hidden transition-all duration-500 ease-out flex-shrink-0 cursor-pointer w-[400px] h-[480px] hover:scale-105 hover:-translate-y-10 hover:shadow-orange-100 hover:shadow-xl 
-                                
-                            `}
-                            onClick={() => setActive(index)}
-                        >
-                            {/* Image */}
-                            <Image
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                className="object-cover"
-                            />
+              {/* Overlay — tight to content only, not full card */}
+              <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-black/80 to-transparent" />
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              {/* Content — reel style */}
+              <div className="absolute bottom-0 left-0 right-0 px-4 pb-5 text-white">
+                {/* Location pill at top of text block */}
+                <span className="inline-block text-[11px] font-medium bg-white/20 backdrop-blur-sm px-2.5 py-0.5 rounded-full mb-2">
+                  📍 {item.location}
+                </span>
 
-                            {/* Content */}
-                            <div className="absolute bottom-5 left-5 right-5 text-white">
-                                <h3 className="font-semibold text-lg leading-tight">
-                                    {item.title}
-                                </h3>
+                <h3 className="font-semibold text-base leading-snug mb-1">
+                  {item.title}
+                </h3>
 
-                                <p className="text-sm opacity-80">{item.location}</p>
-                                <p className="text-sm opacity-80">{item.duration}</p>
+                <p className="text-xs opacity-70 mb-3">{item.duration}</p>
 
-                                <div className="flex items-center justify-between mt-4">
-                                    <p className="text-xl font-bold">₹ {item.price}</p>
-
-                                    <button className="bg-white text-black px-4 py-1 rounded-full text-sm hover:scale-105 transition">
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
+                <div className="flex items-center justify-between">
+                  <p className="text-lg font-bold">₹ {item.price}</p>
+                  <button className="bg-white text-black px-4 py-1.5 rounded-full text-xs font-medium hover:scale-105 transition">
+                    View Details
+                  </button>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
 
-            {/* Left Arrow */}
-            <button
-                onClick={() => scroll("left")}
-                className="absolute left-6 top-1/2 -translate-y-1/2 
-        w-12 h-12 rounded-full bg-white shadow-lg hover:scale-110 transition z-20"
-            >
-                ←
-            </button>
+        {/* Left Arrow — desktop only (unchanged) */}
+        <button
+          onClick={() => scroll("left")}
+          className="hidden md:flex items-center justify-center absolute left-6 top-1/2 -translate-y-1/2 
+    w-12 h-12 rounded-full bg-white shadow-lg hover:scale-110 transition z-20"
+        >
+          ←
+        </button>
 
-            {/* Right Arrow */}
-            <button
-                onClick={() => scroll("right")}
-                className="absolute right-6 top-1/2 -translate-y-1/2 
-        w-12 h-12 rounded-full bg-white shadow-lg hover:scale-110 transition z-20"
-            >
-                →
-            </button>
+        {/* Right Arrow — desktop only (unchanged) */}
+        <button
+          onClick={() => scroll("right")}
+          className="hidden md:flex items-center justify-center absolute right-6 top-1/2 -translate-y-1/2 
+    w-12 h-12 rounded-full bg-white shadow-lg hover:scale-110 transition z-20"
+        >
+          →
+        </button>
 
-            {/* Dots */}
-            <div className="flex justify-center mt-10 gap-2">
-                {features.map((_, i) => (
-                    <div
-                        key={i}
-                        className={`
-                            h-2 rounded-full transition-all
-                            ${i === active ? "w-6 bg-orange-500" : "w-2 bg-gray-300"}
-                        `}
-                    />
-                ))}
-            </div>
-        </section>
+        {/* Dots — mobile only */}
+        <div className="flex md:hidden justify-center mt-6 gap-2">
+          {features.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 rounded-full transition-all duration-300
+                ${i === active ? "w-6 bg-orange-500" : "w-2 bg-gray-300"}
+            `}
+            />
+          ))}
+        </div>
+      </section>
     );
 }

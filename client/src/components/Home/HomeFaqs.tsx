@@ -200,93 +200,82 @@ export default function HomeFaqs() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="relative py-24 px-6 bg-white overflow-hidden">
+      <section className="relative py-24 px-6 bg-white overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white to-white pointer-events-none"></div>
 
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white to-white pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
+              Frequently Asked{" "}
+              <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h2>
+            <p className="text-gray-500 mt-4">
+              Everything you need to know before planning your journey.
+            </p>
+          </div>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-
-                {/* Heading */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">
-                        Frequently Asked{" "}
-                        <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-                            Questions
-                        </span>
-                    </h2>
-                    <p className="text-gray-500 mt-4">
-                        Everything you need to know before planning your journey.
-                    </p>
-                </div>
-
-                <div className="grid lg:grid-cols-3 gap-10">
-
-                    {/* LEFT CATEGORY */}
-                    <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible pb-2">
-
-                        {categories.map((cat, i) => (
-                            <button
-                                key={i}
-                                onClick={() => {
-                                    setActiveCategory(cat);
-                                    setOpenIndex(0);
-                                }}
-                                className={`px-5 py-3 rounded-full text-sm font-medium whitespace-nowrap transition cursor-pointer
-                  ${activeCategory === cat
-                                        ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md"
-                                        : "bg-orange-50 text-gray-700 hover:bg-orange-100"
-                                    }`}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* RIGHT FAQ */}
-                    <div className="lg:col-span-2 space-y-4">
-
-                        {faqData[activeCategory as keyof typeof faqData].map((item, i) => (
-                            <div
-                                key={i}
-                                className="bg-white border border-orange-100 rounded-xl shadow-sm overflow-hidden"
-                            >
-
-                                {/* Question */}
-                                <button
-                                    onClick={() =>
-                                        setOpenIndex(openIndex === i ? null : i)
-                                    }
-                                    className="w-full flex justify-between items-center px-6 py-5 text-left"
-                                >
-                                    <span className="font-medium text-gray-900">
-                                        {item.q}
-                                    </span>
-
-                                    <ChevronDown
-                                        className={`w-5 h-5 text-orange-500 transition-transform duration-300 
-                      ${openIndex === i ? "rotate-180" : ""}`}
-                                    />
-                                </button>
-
-                                {/* Answer */}
-                                <div
-                                    className={`px-6 transition-all duration-300 overflow-hidden 
-                    ${openIndex === i
-                                            ? "max-h-40 pb-5"
-                                            : "max-h-0"
-                                        }`}
-                                >
-                                    <p className="text-gray-500 text-sm">
-                                        {item.a}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-
-                    </div>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-10">
+            {/* LEFT CATEGORY */}
+            <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible pb-2 scrollbar-hide">
+              {categories.map((cat, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setActiveCategory(cat);
+                    setOpenIndex(0);
+                  }}
+                  className={`px-5 py-3 rounded-full text-sm font-medium whitespace-nowrap transition cursor-pointer
+                  ${
+                    activeCategory === cat
+                      ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md"
+                      : "bg-orange-50 text-gray-700 hover:bg-orange-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
-        </section>
+
+            {/* RIGHT FAQ */}
+            <div className="lg:col-span-2 space-y-4">
+              {faqData[activeCategory as keyof typeof faqData].map(
+                (item, i) => (
+                  <div
+                    key={i}
+                    className="bg-white border border-orange-100 rounded-xl shadow-sm overflow-hidden"
+                  >
+                    {/* Question */}
+                    <button
+                      onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                      className="w-full flex justify-between items-center px-6 py-5 text-left"
+                    >
+                      <span className="font-medium text-gray-900">
+                        {item.q}
+                      </span>
+
+                      <ChevronDown
+                        className={`w-5 h-5 text-orange-500 transition-transform duration-300 
+                      ${openIndex === i ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {/* Answer */}
+                    <div
+                      className={`px-6 transition-all duration-300 overflow-hidden 
+                    ${openIndex === i ? "max-h-40 pb-5" : "max-h-0"}`}
+                    >
+                      <p className="text-gray-500 text-sm">{item.a}</p>
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
     );
 }
