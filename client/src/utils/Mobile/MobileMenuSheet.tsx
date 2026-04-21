@@ -1,140 +1,183 @@
 "use client";
 
+import { useRef } from "react";
 import {
-    X,
-    ChevronRight,
-    Home,
-    Compass,
-    BookOpen,
-    Activity,
-    User
+  X,
+  ChevronRight,
+  Home,
+  Compass,
+  BookOpen,
+  Activity,
+  User,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function MobileMenuSheet({
-    isOpen,
-    onClose,
+  isOpen,
+  onClose,
 }: {
-    isOpen: boolean;
-    onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }) {
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleNavigate = (path: string) => {
-        onClose();
-        setTimeout(() => router.push(path), 200);
-    };
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const startY = useRef(0);
+  const currentY = useRef(0);
+  const isDragging = useRef(false);
 
-    return (
-        <>
-            {/* OVERLAY */}
-            <div
-                onClick={onClose}
-                className={`fixed inset-0 bg-black/40 backdrop-blur-md z-[9998] transition-opacity duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-                    }`}
-            />
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    startY.current = e.touches[0].clientY;
+    isDragging.current = true;
+    if (sheetRef.current) {
+      sheetRef.current.style.transition = "none";
+    }
+  };
 
-            {/* SHEET */}
-            <div
-                className={`fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white rounded-t-[28px] shadow-2xl z-[9999] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "translate-y-0" : "translate-y-full"
-                    }`}
-            >
-                {/* HANDLE */}
-                <div className="pt-3 pb-2">
-                    <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto" />
-                </div>
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    const y = e.touches[0].clientY;
+    if (y > startY.current) {
+      currentY.current = y - startY.current;
+      if (sheetRef.current) {
+        sheetRef.current.style.transform = `translateX(0%) translateY(${currentY.current}px)`;
+      }
+    }
+  };
 
-                {/* HEADER */}
-                <div className="flex justify-between items-center px-5 py-3">
-                    <h2 className="text-xl font-semibold text-gray-900">
-                        Menu
-                    </h2>
-                    <button
-                        onClick={onClose}
-                        className="p-2 rounded-full hover:bg-gray-100"
-                    >
-                        <X size={20} />
-                    </button>
-                </div>
+  const onTouchEnd = () => {
+    isDragging.current = false;
+    if (sheetRef.current) {
+      sheetRef.current.style.transition = "";
+      sheetRef.current.style.transform = "";
+    }
 
-                {/* 🔥 PROFILE SECTION */}
-                <div
-                    onClick={() => handleNavigate("/profile")}
-                    className="flex items-center gap-4 px-5 py-4 border-b border-gray-100 cursor-pointer active:bg-gray-50"
-                >
-                    {/* Avatar */}
-                    <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
-                        <User size={22} />
-                    </div>
+    if (currentY.current > 100) {
+      onClose();
+    }
+    currentY.current = 0;
+  };
 
-                    {/* User Info */}
-                    <div className="flex-1">
-                        <p className="text-sm font-semibold text-gray-900">
-                            Adarsh Dubey
-                        </p>
-                        <p className="text-xs text-gray-500">
-                            adarsh@example.com
-                        </p>
-                    </div>
+  const handleNavigate = (path: string) => {
+    onClose();
+    setTimeout(() => router.push(path), 200);
+  };
 
-                    <ChevronRight size={18} className="text-gray-400" />
-                </div>
+  return (
+    <>
+      {/* OVERLAY */}
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      />
 
-                {/* MENU LIST */}
-                <div className="pb-6">
+      {/* SHEET */}
+      <div
+        ref={sheetRef}
+        className={`fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#f8f9fa] rounded-t-[32px] shadow-2xl z-[9999] transform transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          isOpen ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
+        {/* HANDLE */}
+        <div
+          className="pt-3 pb-3 cursor-grab active:cursor-grabbing"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <div className="w-12 h-1 bg-gray-300/80 rounded-full mx-auto" />
+        </div>
 
-                    <MenuItem
-                        icon={<Home size={20} />}
-                        label="Home"
-                        onClick={() => handleNavigate("/")}
-                    />
+        {/* HEADER */}
+        <div className="flex justify-between items-center px-6 py-2 border-b border-gray-200/50 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+            Menu
+          </h2>
+          <button
+            onClick={onClose}
+            className="p-2 -mr-2 rounded-full bg-gray-100/50 hover:bg-gray-200/80 text-gray-500 transition-colors"
+          >
+            <X size={20} strokeWidth={1.5} />
+          </button>
+        </div>
 
-                    <MenuItem
-                        icon={<Compass size={20} />}
-                        label="Experiences"
-                        onClick={() => handleNavigate("/experiences")}
-                    />
+        {/* 🔥 PROFILE SECTION */}
+        <div
+          onClick={() => handleNavigate("/profile")}
+          className="flex items-center gap-4 mx-4 mb-6 p-4 bg-white border border-gray-100 rounded-3xl shadow-sm cursor-pointer active:scale-[0.98] transition-all"
+        >
+          {/* Avatar */}
+          <div className="w-14 h-14 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-500">
+            <User size={24} strokeWidth={1.5} />
+          </div>
 
-                    <MenuItem
-                        icon={<BookOpen size={20} />}
-                        label="Blogs"
-                        onClick={() => handleNavigate("/blogs")}
-                    />
+          {/* User Info */}
+          <div className="flex-1">
+            <p className="text-base font-bold text-gray-900">Adarsh Dubey</p>
+            <p className="text-sm text-gray-500 mt-0.5">View Profile</p>
+          </div>
 
-                    <MenuItem
-                        icon={<Activity size={20} />}
-                        label="Activities"
-                        onClick={() => handleNavigate("/activities")}
-                    />
+          <ChevronRight size={20} strokeWidth={1.5} className="text-gray-300" />
+        </div>
 
-                </div>
-            </div>
-        </>
-    );
+        {/* MENU LIST */}
+        <div className="mx-4 mb-8 bg-white border border-gray-100 rounded-3xl shadow-sm overflow-hidden pb-0">
+          <MenuItem
+            icon={<Home size={20} />}
+            label="Home"
+            onClick={() => handleNavigate("/")}
+          />
+
+          <MenuItem
+            icon={<Compass size={20} />}
+            label="Experiences"
+            onClick={() => handleNavigate("/experiences")}
+          />
+
+          <MenuItem
+            icon={<BookOpen size={20} />}
+            label="Blogs"
+            onClick={() => handleNavigate("/blogs")}
+          />
+
+          <MenuItem
+            icon={<Activity size={20} />}
+            label="Activities"
+            onClick={() => handleNavigate("/activities")}
+            isLast
+          />
+        </div>
+      </div>
+    </>
+  );
 }
 
 function MenuItem({
-    icon,
-    label,
-    onClick,
+  icon,
+  label,
+  onClick,
+  isLast,
 }: {
-    icon: React.ReactNode;
-    label: string;
-    onClick: () => void;
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+  isLast?: boolean;
 }) {
-    return (
-        <div
-            onClick={onClick}
-            className="flex items-center justify-between px-5 py-4 border-b border-gray-100 active:bg-gray-50 transition cursor-pointer"
-        >
-            <div className="flex items-center gap-4">
-                <div className="text-orange-500">{icon}</div>
-                <span className="text-[15px] font-medium text-gray-800">
-                    {label}
-                </span>
-            </div>
-
-            <ChevronRight size={18} className="text-gray-400" />
+  return (
+    <div
+      onClick={onClick}
+      className={`flex items-center justify-between px-5 py-4 ${!isLast ? "border-b border-gray-50" : ""} active:bg-gray-50 transition-colors cursor-pointer group`}
+    >
+      <div className="flex items-center gap-4">
+        <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+          {icon}
         </div>
-    );
+        <span className="text-[16px] font-medium text-gray-800">{label}</span>
+      </div>
+
+      <ChevronRight size={20} strokeWidth={1.5} className="text-gray-300" />
+    </div>
+  );
 }
