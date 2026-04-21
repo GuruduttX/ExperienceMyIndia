@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FloatingInput } from "@/utils/FloatingInput";
+import { FloatingTextarea } from "@/utils/FloatingTextarea";
 
 export default function TourSideForm() {
     const [loading, setLoading] = useState(false);
@@ -14,6 +16,7 @@ export default function TourSideForm() {
         travellers: "",
         message: "",
     });
+
 
     const WHATSAPP = "7302265809";
 
@@ -85,7 +88,7 @@ export default function TourSideForm() {
 
     return (
         <div className="w-full">
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-white/40">
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)] border  border-gray-200">
 
                 {/* Title */}
                 <h3 className="text-lg font-semibold text-gray-900 mb-5">
@@ -95,120 +98,86 @@ export default function TourSideForm() {
                 <form onSubmit={handleSubmit} className="space-y-4">
 
                     {/* Name */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Full Name *
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm
-                            focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition"
-                        />
-                    </div>
+                     <div className="space-y-4">
 
-                    {/* Email */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm
-                            focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition"
-                        />
-                    </div>
+            <FloatingInput
+                label="Full Name"
+                name="name"
+                value={form.name}
+                onChange={(e:any)=>setForm({...form, name:e.target.value})}
+                required
+            />
 
-                    {/* Phone */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Phone Number *
-                        </label>
-                        <div className="mt-1 flex">
-                            <div className="px-4 flex items-center bg-gray-100 rounded-l-xl text-sm border border-r-0 border-gray-200">
-                                +91
-                            </div>
-                            <input
-                                type="tel"
-                                name="phone"
-                                value={form.phone}
-                                onChange={handleChange}
-                                required
-                                className="w-full rounded-r-xl border border-gray-200 px-4 py-2.5 text-sm
-                                focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition"
-                            />
-                        </div>
-                    </div>
+            <FloatingInput
+                label="Email"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={(e:any)=>setForm({...form, email:e.target.value})}
+            />
 
-                    {/* Travel Date */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Travel Date *
-                        </label>
-                        <input
-                            type="date"
-                            name="travelDate"
-                            value={form.travelDate}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm
-                            focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition"
-                        />
-                    </div>
+            {/* Phone */}
+            <div className="flex gap-2">
+                <div className="w-20 border rounded-xl flex items-center justify-center text-sm outline-none">
+                +91
+                </div>
+                <div className="flex-1">
+                <FloatingInput
+                    label="Phone Number"
+                    name="phone"
+                    value={form.phone}
+                    onChange={(e:any)=>setForm({...form, phone:e.target.value})}
+                    required
+                />
+                </div>
+            </div>
 
-                    {/* Travellers */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Travellers *
-                        </label>
-                        <input
-                            type="number"
-                            name="travellers"
-                            value={form.travellers}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm
-                            focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition"
-                        />
-                    </div>
+            {/* Travel Date */}
+            <div className="relative">
+                <input
+                type="date"
+                value={form.travelDate}
+                onChange={(e)=>setForm({...form, travelDate:e.target.value})}
+                required
+                className="peer w-full rounded-xl border focus:border-orange-400 outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-200 border-gray-300 px-4 pt-5 pb-2"
+                />
+                <label className="absolute left-3 top-1 text-xs text-gray-500">
+                Travel Date *
+                </label>
+            </div>
 
-                    {/* Message */}
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Message
-                        </label>
-                        <textarea
-                            name="message"
-                            value={form.message}
-                            onChange={handleChange}
-                            rows={3}
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm
-                            focus:border-orange-500 focus:ring-2 focus:ring-orange-100 outline-none transition resize-none"
-                        />
-                    </div>
+            <FloatingInput
+                label="Traveller Count"
+                name="travellers"
+                value={form.travellers}
+                onChange={(e:any)=>setForm({...form, travellers:e.target.value})}
+                required
+            />
 
-                    {/* Button */}
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg disabled:opacity-60"
-                    >
-                        {loading ? "Sending..." : "Send Enquiry"}
-                    </button>
-                </form>
+            <FloatingTextarea
+                label="Message"
+                name="message"
+                value={form.message}
+                onChange={(e:any)=>setForm({...form, message:e.target.value})}
+            />
 
-                {/* Success */}
-                {success && (
-                    <p className="mt-3 text-xs text-green-600 text-center">
-                        Enquiry sent successfully ✔ Redirecting to WhatsApp…
-                    </p>
-                )}
+     <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg disabled:opacity-60"
+        >
+            {loading ? "Sending..." : "Send Enquiry"}
+    </button>
+
+    </div>
+    </form>
+
+        {/* Success */}
+        {success && (
+            <p className="mt-3 text-xs text-green-600 text-center">
+                Enquiry sent successfully ✔ Redirecting to WhatsApp…
+            </p>
+        )}
             </div>
         </div>
     );

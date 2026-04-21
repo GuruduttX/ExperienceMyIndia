@@ -4,11 +4,11 @@ import Image from "next/image";
 
 export default function CTABanner() {
     return (
-        <section className="px-6 py-10 bg-white">
+        <section className=" bg-white">
             <div className="max-w-7xl mx-auto">
 
                 <div className="relative rounded-2xl overflow-hidden flex items-center justify-between 
-                        bg-gradient-to-r from-orange-500 to-amber-400 p-8 md:p-10">
+                        bg-gradient-to-r from-orange-500 to-amber-400 p-6 md:p-8">
 
                     {/* LEFT CONTENT */}
                     <div className="max-w-lg text-white z-10">
