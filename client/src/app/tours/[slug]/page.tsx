@@ -11,12 +11,14 @@ import TourSideForm from '@/components/TourPackage/TourSideForm'
 import TripHighlights from '@/components/TourPackage/TripHighLights'
 import Footer from '@/utils/Footer'
 import MobileNavbar from '@/utils/Mobile/MobileNavbar'
+import MobileNavWrapper from '@/utils/Mobile/MobileNavWrapper'
 import Navbar from '@/utils/NavBar'
 
 const page = () => {
     return (
         <>
             <Navbar />
+            <MobileNavWrapper/>
             <TourHero />
             <TourDetails />
             <section className="w-full min-h-screen bg-white  ">

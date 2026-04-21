@@ -128,7 +128,7 @@ export default function HeroSection() {
       <Navbar/>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6 md:px-14 pb-28">
+      <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-28 pb-[230px] sm:px-6 sm:pt-32 sm:pb-36 md:px-10 lg:px-56 lg:pt-28 lg:pb-28 xl:px-64 2xl:px-80">
 
         {/* Floating Rating — LEFT */}
         <div className="hidden lg:block absolute left-14 top-1/2 -translate-y-1/2 bg-black/45 border border-white/10 rounded-2xl p-4 backdrop-blur-md w-[150px]">
@@ -185,12 +185,12 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-3">
-            <button className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-[14px] px-7 py-3.5 rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(249,115,22,0.45)] hover:shadow-[0_8px_28px_rgba(249,115,22,0.55)] hover:-translate-y-0.5 cursor-pointer">
+          <div className="flex w-full max-w-sm flex-col items-stretch justify-center gap-3 mx-auto sm:max-w-none sm:flex-row sm:items-center">
+            <button className="inline-flex w-full items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-[14px] px-5 py-3.5 rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(249,115,22,0.45)] hover:shadow-[0_8px_28px_rgba(249,115,22,0.55)] hover:-translate-y-0.5 cursor-pointer sm:w-auto sm:px-7">
               Connect With An Expert
-              <ArrowRight size={16} strokeWidth={2.5} />
+              <ArrowRight size={16} strokeWidth={2.5} className="shrink-0" />
             </button>
-            <button className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/18 text-white font-semibold text-[14px] px-6 py-3.5 rounded-xl border border-white/20 transition-all duration-200 backdrop-blur-sm hover:-translate-y-0.5 cursor-pointer">
+            <button className="inline-flex w-full items-center justify-center gap-2 bg-white/10 hover:bg-white/18 text-white font-semibold text-[14px] px-5 py-3.5 rounded-xl border border-white/20 transition-all duration-200 backdrop-blur-sm hover:-translate-y-0.5 cursor-pointer sm:w-auto sm:px-6">
               View All Packages
             </button>
           </div>
@@ -214,8 +214,8 @@ export default function HeroSection() {
       </div>
 
       {/* ── SLIDE CONTROLS ── */}
-      <div className="absolute bottom-[70px] left-1/2 -translate-x-1/2 z-10 flex items-center gap-4">
-        <button onClick={prev} className="w-9 h-9 rounded-full bg-white/10 border border-white/20 hover:bg-white/22 flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer">
+      <div className="absolute bottom-[138px] left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 sm:bottom-[70px] sm:gap-4">
+        <button onClick={prev} className="w-10 h-10 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/20 hover:bg-white/22 flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer">
           <ChevronLeft size={16} className="text-white" strokeWidth={2.5} />
         </button>
 
@@ -225,21 +225,31 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <button onClick={next} className="w-9 h-9 rounded-full bg-white/10 border border-white/20 hover:bg-white/22 flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer">
+        <button onClick={next} className="w-10 h-10 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/20 hover:bg-white/22 flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer">
           <ChevronRight size={16} className="text-white" strokeWidth={2.5} />
         </button>
       </div>
 
       {/* ── STATS BAR ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 flex items-stretch bg-black/65 border-t border-white/8 backdrop-blur-xl">
+      <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-2 overflow-hidden border-t border-white/10 bg-black/70 shadow-[0_-18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:grid-cols-4">
         {stats.map(({ icon: Icon, num, label }, i) => (
-          <div key={label} className={`flex-1 flex items-center gap-3 px-5 md:px-7 py-4 hover:bg-white/4 transition-colors cursor-default ${i < stats.length - 1 ? "border-r border-white/7" : ""}`}>
-            <div className="w-9 h-9 rounded-lg bg-orange-500/12 border border-orange-500/20 flex items-center justify-center flex-shrink-0">
-              <Icon size={16} className="text-orange-400" strokeWidth={1.8} />
+          <div
+            key={label}
+            className={`group relative flex items-center gap-3 px-4 py-3.5 transition-colors cursor-default hover:bg-white/[0.06] sm:justify-center sm:px-5 md:px-7 md:py-4 ${
+              i % 2 === 0 ? "border-r border-white/10 sm:border-r-0" : ""
+            } ${
+              i < 2 ? "border-b border-white/10 sm:border-b-0" : ""
+            } ${
+              i < stats.length - 1 ? "sm:border-r sm:border-white/10" : ""
+            }`}
+          >
+            <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-orange-300/0 to-transparent transition-colors group-hover:via-orange-300/45" />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-orange-400/25 bg-orange-500/15 shadow-[0_0_24px_rgba(249,115,22,0.14)]">
+              <Icon size={17} className="text-orange-300" strokeWidth={1.9} />
             </div>
-            <div>
-              <p className="text-white font-extrabold text-[17px] leading-none tracking-tight">{num}</p>
-              <p className="text-white/40 text-[11px] mt-0.5">{label}</p>
+            <div className="min-w-0">
+              <p className="text-white font-extrabold text-[17px] leading-none tracking-tight md:text-[18px]">{num}</p>
+              <p className="mt-1 truncate text-[10.5px] font-medium uppercase tracking-[0.12em] text-white/45">{label}</p>
             </div>
           </div>
         ))}

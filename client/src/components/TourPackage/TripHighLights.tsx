@@ -10,7 +10,7 @@ const highlights = [
 
 export default function TripHighlights() {
     return (
-        <section className="w-full bg-white pb-10 ">
+        <section className="w-full bg-white pb-10 px-6 sm:px-0 ">
             <div className="max-w-4xl mx-auto">
 
                 {/* Title */}

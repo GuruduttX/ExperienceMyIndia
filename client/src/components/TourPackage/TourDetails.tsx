@@ -4,6 +4,7 @@ import { Star , Check, Lock, RefreshCcw, Phone, ArrowRight } from "lucide-react"
 import { QuickInclusion } from "./QuickInclusion";
 import { TripTimeline } from "./TripTimeline";
 import  TourOptions from '@/components/TourPackage/TourOptions'
+import TourSideForm from "./TourSideForm";
 
 
 
@@ -19,6 +20,10 @@ export default function TourDetails() {
                     <h1 className="text-3xl md:text-4xl font-bold mb-8">
                         Luxury Rajasthan, Smart Price – Full Circuit
                     </h1>
+
+                    <div className="lg:hidden">
+                        <TourSideForm variant="compact" />
+                    </div>
 
 
                     <div className="space-y-16">
@@ -39,7 +44,7 @@ export default function TourDetails() {
                 </div>
 
                 {/* RIGHT - PRICING */}
-                <div className="lg:col-span-1">
+                <div className="hidden lg:col-span-1 lg:block">
 
                     <div className="bg-white rounded-2xl border border-white/40 overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.07)] sticky top-24 h-fit w-full max-w-sm mx-auto lg:mx-0">
                         {/* Top accent stripe */}

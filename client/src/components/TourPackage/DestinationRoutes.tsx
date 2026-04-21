@@ -33,7 +33,7 @@ export default function DestinationRoutes(){
 
 
     return(
-        <section className="space-y-12">
+        <section className="space-y-12 px-6 sm:px-0">
                 <div>
                     <h3 className="text-2xl font-semibold mb-4">
                         Destination Routes
