@@ -64,7 +64,7 @@ const tours = [
     oldPrice: "36,999",
     location: "Srinagar • Gulmarg • Pahalgam",
     images: [
-      "https://images.unsplash.com/photo-1595815771614-ade501c1e1e3",
+      "https://images.unsplash.com/photo-1586348943529-beaae6c28db9",
       "https://images.unsplash.com/photo-1614094082869-cd4e4b2905c7",
       "https://images.unsplash.com/photo-1627894483216-2138af692e32",
     ],
@@ -77,19 +77,27 @@ export default function HomeTourSection() {
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
 
+    const firstChild = scrollRef.current.firstElementChild as HTMLElement;
+    if (!firstChild) return;
+
+    const style = window.getComputedStyle(scrollRef.current);
+    const gap = parseFloat(style.gap) || 0;
+    const scrollAmount = firstChild.offsetWidth + gap;
+
     scrollRef.current.scrollBy({
-      left: direction === "left" ? -400 : 400,
+      left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
   };
 
   return (
-    <section className="w-full md:w-[80vw] mx-auto py-10 md:py-16">
-
+    <section className="w-full md:w-[92vw] mx-auto py-10 md:py-16">
       {/* HEADER */}
       <div className="mb-8 md:mb-10 px-4 md:px-0">
         <div className="flex items-center justify-between gap-4">
-          <h2 className="text-2xl font-semibold whitespace-nowrap">Explore India</h2>
+          <h2 className="text-2xl font-semibold whitespace-nowrap">
+            Explore India
+          </h2>
 
           <div className="flex flex-col items-end gap-3 md:flex-row md:items-center md:gap-4">
             <div className="flex items-center gap-4">
@@ -108,9 +116,7 @@ export default function HomeTourSection() {
               </button>
             </div>
 
-            <button className="text-orange-500 font-medium">
-              View All →
-            </button>
+            <button className="text-orange-500 font-medium">View All →</button>
           </div>
         </div>
       </div>

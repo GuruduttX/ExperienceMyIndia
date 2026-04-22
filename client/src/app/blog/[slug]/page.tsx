@@ -1,9 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { Calendar, Clock, User } from "lucide-react";
 import Navbar from "@/utils/NavBar";
 import BlogFaqs from "@/components/blog/BlogFaqs";
+import BlogSidebarForm from "@/components/blog/BlogSidebarForm";
+import ReadOtherBlogs from "@/components/blog/ReadOtherBlogs";
+import BlogCTA from "@/components/blog/BlogCTA";
+import BlogHero from "@/components/blog/BlogHero";
+import BlogContent from "@/components/blog/BlogContent";
+import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper";
 
 export default function BlogPost() {
   // Hardcoded data for the blog post (To be replaced with API fetch later)
@@ -47,114 +51,62 @@ export default function BlogPost() {
     ],
   };
 
+  // Dummy data for "Read Other Blogs"
+  const otherBlogsData = [
+    {
+      title: "A Complete Guide to the Spiritual Ghats of Varanasi",
+      category: "Spiritual",
+      date: "November 2, 2023",
+      readTime: "8 min read",
+      coverImage:
+        "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=800&auto=format&fit=crop",
+      slug: "varanasi-ghats-guide",
+    },
+    {
+      title: "Top 5 Snow Destinations in Himachal Pradesh",
+      category: "Adventure",
+      date: "December 10, 2023",
+      readTime: "5 min read",
+      coverImage:
+        "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?q=80&w=800&auto=format&fit=crop",
+      slug: "himachal-snow-destinations",
+    },
+    {
+      title: "Exploring the Royal Heritage of Jaipur",
+      category: "Culture",
+      date: "January 5, 2024",
+      readTime: "7 min read",
+      coverImage:
+        "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop",
+      slug: "jaipur-royal-heritage",
+    },
+  ];
+
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 pb-24 md:pb-12">
-        <main className="max-w-6xl mx-auto sm:px-6 lg:px-8 sm:py-8">
-          <article className="bg-white sm:rounded-3xl shadow-sm overflow-hidden border-b sm:border border-gray-100">
-            {/* Cover Image */}
-            <div className="relative w-full h-[60vh] md:h-[70vh]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={blogData.coverImage}
-                alt={blogData.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 md:p-12">
-                <div className="max-w-4xl">
-                  <span className="inline-block bg-orange-500 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-sm mb-4">
-                    {blogData.category}
-                  </span>
-                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                    {blogData.title}
-                  </h1>
-                </div>
-              </div>
-            </div>
+      <MobileNavWrapper />
+      <div className="min-h-screen bg-white pb-24 md:pb-16 pt-24 md:pt-32">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <BlogHero blogData={blogData} />
 
-            {/* Content Container */}
-            <div className="px-5 py-8 md:px-12 md:py-12 max-w-5xl mx-auto">
-              {/* Blog Meta Data */}
-              <div className="flex flex-wrap items-center gap-5 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-100">
-                <div className="flex items-center gap-2">
-                  <User
-                    size={18}
-                    strokeWidth={1.5}
-                    className="text-orange-500"
-                  />
-                  <span className="font-semibold text-gray-800">
-                    {blogData.author}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar
-                    size={18}
-                    strokeWidth={1.5}
-                    className="text-orange-500"
-                  />
-                  <span>{blogData.date}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock
-                    size={18}
-                    strokeWidth={1.5}
-                    className="text-orange-500"
-                  />
-                  <span>{blogData.readTime}</span>
-                </div>
-              </div>
+          {/* Main Content & Sidebar Grid */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12">
+            <BlogContent content={blogData.content} />
 
-              {/* Article Prose */}
-              <div className="space-y-6 text-gray-700 text-base md:text-xl leading-relaxed">
-                {blogData.content.map((block, index) => {
-                  if (block.type === "paragraph") {
-                    return <p key={index}>{block.text}</p>;
-                  }
-                  if (block.type === "heading") {
-                    return (
-                      <h2
-                        key={index}
-                        className="text-2xl md:text-3xl font-bold text-gray-900 mt-10 mb-4"
-                      >
-                        {block.text}
-                      </h2>
-                    );
-                  }
-                  if (block.type === "quote") {
-                    return (
-                      <blockquote
-                        key={index}
-                        className="border-l-4 border-orange-500 bg-orange-50/50 p-6 md:p-8 rounded-r-2xl italic text-gray-800 font-medium my-8 shadow-sm"
-                      >
-                        "{block.text}"
-                      </blockquote>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
+            {/* Sticky Sidebar Form */}
+            <aside className="lg:col-span-4 w-full">
+              <BlogSidebarForm />
+            </aside>
+          </div>
 
-              {/* Blog FAQ Section */}
-              <BlogFaqs />
-
-              {/* CTA / Footer of Blog */}
-              <div className="mt-12 pt-8 border-t border-gray-100 bg-orange-50/30 rounded-2xl p-6 md:p-8 text-center">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                  Want to experience this yourself?
-                </h3>
-                <p className="text-gray-600 text-sm md:text-lg mb-6">
-                  Discover our curated packages and book your next escape.
-                </p>
-                <Link
-                  href="/experiences"
-                  className="inline-block bg-gradient-to-r from-orange-400 to-orange-500 text-white font-medium px-8 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
-                >
-                  View Packages
-                </Link>
-              </div>
-            </div>
-          </article>
+          {/* Bottom Sections: FAQs & CTA */}
+          <div className="max-w-4xl mx-auto mt-24 space-y-16">
+            <BlogFaqs />
+            {/* Redesigned CTA */}
+            <BlogCTA />
+          </div>
+          <ReadOtherBlogs blogs={otherBlogsData} />
         </main>
       </div>
     </>
