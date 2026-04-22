@@ -82,7 +82,7 @@ export default function CityFAQSection({
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
+                  className="flex w-full items-center cursor-pointer justify-between gap-4 px-5 py-5 text-left md:px-6"
                   aria-expanded={isOpen}
                 >
                   <span className="text-[15px] font-semibold leading-snug text-gray-900 md:text-base">

@@ -3,11 +3,18 @@ import CityFAQSection from "@/components/CityPages/CityFAQSection";
 import HeroSection from "@/components/CityPages/HeroSection";
 import CityTourCard from "@/components/CityPages/CityTourCard";
 import CTABanner from "@/utils/CTABanner";
+import Footer from "@/utils/Footer";
+import Navbar from "@/utils/NavBar";
+import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper";
+import InfiniteTourCarousel from "@/components/Home/InfiniteTourCaruosel";
+
 
 
 export default function page(){
     return (
         <div>
+         <Navbar/>
+         <MobileNavWrapper/>
          <HeroSection/>
          <CityAboutSection
             city="Shimla"
@@ -25,8 +32,12 @@ export default function page(){
          />
 
          <CityTourCard/>
-         <CityFAQSection city="Shimla"/>
          <CTABanner/>
+         <InfiniteTourCarousel/>
+
+         <CityFAQSection city="Shimla"/>
+
+         <Footer/>
          
 
 

@@ -1,13 +1,12 @@
 "use client";
 
-import Navbar from "@/utils/NavBar";
 import BlogFaqs from "@/components/blog/BlogFaqs";
 import BlogSidebarForm from "@/components/blog/BlogSidebarForm";
 import ReadOtherBlogs from "@/components/blog/ReadOtherBlogs";
 import BlogCTA from "@/components/blog/BlogCTA";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogContent from "@/components/blog/BlogContent";
-import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper";
+import RelatedPackages from "@/components/blog/Relatedpackages";
 
 export default function BlogPost() {
   // Hardcoded data for the blog post (To be replaced with API fetch later)
@@ -84,8 +83,6 @@ export default function BlogPost() {
 
   return (
     <>
-      <Navbar />
-      <MobileNavWrapper />
       <div className="min-h-screen bg-white pb-24 md:pb-16 pt-24 md:pt-32">
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <BlogHero blogData={blogData} />
@@ -103,6 +100,7 @@ export default function BlogPost() {
           {/* Bottom Sections: FAQs & CTA */}
           <div className="max-w-4xl mx-auto mt-24 space-y-16">
             <BlogFaqs />
+            <RelatedPackages locationName="Kerala" locationSlug="kerala" />
             {/* Redesigned CTA */}
             <BlogCTA />
           </div>
