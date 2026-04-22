@@ -206,7 +206,7 @@ export default function IndiaTourSection() {
             </div>
 
             {/* CARDS */}
-            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 {tours.slice(0, visibleCount).map((tour, i) => (
                     <div
