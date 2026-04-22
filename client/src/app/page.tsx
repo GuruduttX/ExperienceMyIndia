@@ -11,19 +11,14 @@ import StepsSection from "@/components/Home/StepsSection"
 import TourCarousel from "@/components/Home/TourCrauosel"
 import TourHoverUpCarousel from "@/components/Home/TourHoverUpCrauosel"
 import CTABanner from "@/utils/CTABanner"
-import Footer from "@/utils/Footer"
-import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper"
-import Navbar from "@/utils/NavBar"
 import OfferBanner from "@/utils/OfferBanner"
-import WhyChooseUs from "@/utils/WhyChooseUs"
+import dynamic from "next/dynamic"
+const WhyChooseUs = dynamic(()=> import("@/utils/WhyChooseUs"))
 
 
 const HomePage = () => {
   return (
     <>
-
-      <Navbar />
-      <MobileNavWrapper />
       <HomeHero />
       <IndiaStatesStrip />
       <WhatsNewExperience />
@@ -42,7 +37,6 @@ const HomePage = () => {
       <OfferBanner />
       <HomeTourSection />
       <HomeFaqs />
-      <Footer />
     </>
   )
 }
