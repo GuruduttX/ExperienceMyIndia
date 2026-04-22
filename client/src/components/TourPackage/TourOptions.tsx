@@ -46,7 +46,7 @@ export default function TripOptions() {
 
                 {/* 🔥 Duration */}
                 <div>
-                    <h3 className="text-2xl font-semibold mb-5">
+                    <h3 className="text-lg md:text-xl font-semibold mb-5">
                         Choose Trip Duration
                     </h3>
 

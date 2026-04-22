@@ -70,7 +70,7 @@ export default function InfiniteTourCarousel() {
                             className="min-w-[320px] md:min-w-[400px] h-[450px] rounded-3xl overflow-hidden relative shadow-xl group"
                         >
 
-                            {/* 🔥 MULTI IMAGE STACK */}
+                            {/*  MULTI IMAGE STACK */}
                             <div className="absolute inset-0">
                                 {tour.images.map((img, i) => (
                                     <Image
@@ -90,12 +90,12 @@ export default function InfiniteTourCarousel() {
                             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
 
                             {/* Content */}
-                            <div className="absolute bottom-0 p-6 text-white">
+                            <div className="w-full absolute bottom-0 p-6 text-white">
                                 <h2 className="text-xl font-semibold">{tour.title}</h2>
                                 <p className="text-sm opacity-80">{tour.location}</p>
                                 <p className="text-sm">{tour.duration}</p>
 
-                                <div className="mt-3 flex items-center justify-between">
+                                <div className="w-full mt-3 flex items-center justify-between">
                                     <span className="text-lg font-bold">
                                         ₹ {tour.price}
                                     </span>
