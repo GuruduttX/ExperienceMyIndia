@@ -139,7 +139,7 @@ export default function MobileMenuSheet({
           <MenuItem
             icon={<BookOpen size={20} />}
             label="Blogs"
-            onClick={() => handleNavigate("/blogs")}
+            onClick={() => handleNavigate("/blog")}
           />
 
           <MenuItem
