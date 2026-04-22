@@ -56,99 +56,104 @@ export default function TourCarousel() {
     const scroll = (direction: "left" | "right") => {
         if (!scrollRef.current) return;
 
+        const isMobile = window.innerWidth < 768;
+        const scrollAmount = isMobile ? window.innerWidth - 16 : 750;
+
         scrollRef.current.scrollBy({
-            left: direction === "left" ? -750 : 750,
+            left: direction === "left" ? -scrollAmount : scrollAmount,
             behavior: "smooth",
         });
     };
 
     return (
-        <section className="w-full py-16 bg-neutral-50">
-            <div className="max-w-8xl mx-auto px-6">
+      <section className="w-full py-10 md:py-16 bg-neutral-50">
+        <div className="max-w-8xl mx-auto px-0 md:px-6">
+          {/* Heading */}
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-neutral-800 mb-6 md:mb-8 px-4 md:px-0">
+            Our Top Tours
+          </h2>
 
-                {/* Heading */}
-                <h2 className="text-3xl font-semibold text-neutral-800 mb-8">
-                    Our Top Tours
-                </h2>
+          {/* Carousel Wrapper */}
+          <div className="relative">
+            {/* LEFT BUTTON */}
+            <button
+              onClick={() => scroll("left")}
+              className="absolute invisible md:visible left-2 top-1/2 -translate-y-1/2 z-20 
+                        bg-white/80 backdrop-blur-md p-3 rounded-full shadow-md 
+                        hover:scale-110 transition cursor-pointer"
+            >
+              ←
+            </button>
 
-                {/* Carousel Wrapper */}
-                <div className="relative">
+            {/* SCROLL CONTAINER */}
+            <div
+              ref={scrollRef}
+              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 md:px-0"
+            >
+              {tours.map((tour) => (
+                <div
+                  key={tour.id}
+                  className="min-w-[calc(100vw-2rem)] md:min-w-[820px] h-[420px] md:h-[500px] relative rounded-[24px] overflow-hidden group"
+                >
+                  {/* IMAGE */}
+                  <img
+                    src={tour.image}
+                    alt={tour.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                  />
 
-                    {/* LEFT BUTTON */}
-                    <button
-                        onClick={() => scroll("left")}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 
-            bg-white/80 backdrop-blur-md p-3 rounded-full shadow-md 
-            hover:scale-110 transition cursor-pointer"
-                    >
-                        ←
-                    </button>
+                  {/* GRADIENT OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                    {/* SCROLL CONTAINER */}
-                    <div
-                        ref={scrollRef}
-                        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
-                    >
-                        {tours.map((tour) => (
-                            <div
-                                key={tour.id}
-                                className="min-w-[820px] h-[500px] relative rounded-[24px] overflow-hidden group"
-                            >
-                                {/* IMAGE */}
-                                <img
-                                    src={tour.image}
-                                    alt={tour.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                                />
-
-                                {/* GRADIENT OVERLAY */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                                {/* RIGHT ARROW INSIDE CARD */}
+                  {/* RIGHT ARROW INSIDE CARD
                                 <button className="absolute right-4 top-1/2 -translate-y-1/2 
                   bg-white/20 backdrop-blur-md p-3 rounded-full text-white 
                   opacity-0 group-hover:opacity-100 transition cursor-pointer">
                                     →
-                                </button>
+                                </button> */}
 
-                                {/* CONTENT */}
-                                <div className="absolute bottom-0 p-6 text-white w-full">
+                  {/* CONTENT */}
+                  <div className="absolute bottom-0 p-4 md:p-6 text-white w-full">
+                    {/* Duration */}
+                    <p className="text-sm text-white/70 mb-1">
+                      {tour.duration}
+                    </p>
 
-                                    {/* Duration */}
-                                    <p className="text-sm text-white/70 mb-1">
-                                        {tour.duration}
-                                    </p>
+                    {/* Title */}
+                    <h3 className="text-lg md:text-xl font-semibold leading-snug tracking-wide">
+                      {tour.title}
+                    </h3>
 
-                                    {/* Title */}
-                                    <h3 className="text-xl font-semibold leading-snug tracking-wide">
-                                        {tour.title}
-                                    </h3>
+                    {/* Location */}
+                    <p className="text-sm text-white/80 mt-1">
+                      {tour.location}
+                    </p>
 
-                                    {/* Location */}
-                                    <p className="text-sm text-white/80 mt-1">
-                                        {tour.location}
-                                    </p>
+                    <div className="mt-3 flex items-end justify-between gap-4">
+                      <p className="text-base md:text-lg font-bold">
+                        {tour.price}
+                      </p>
 
-                                    {/* Price */}
-                                    <p className="mt-2 text-lg font-bold">
-                                        {tour.price}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+                      <button className="rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100">
+                        View Tour
+                      </button>
                     </div>
-
-                    {/* RIGHT BUTTON */}
-                    <button
-                        onClick={() => scroll("right")}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 
-            bg-white/80 backdrop-blur-md p-3 rounded-full shadow-md 
-            hover:scale-110 transition cursor-pointer"
-                    >
-                        →
-                    </button>
+                  </div>
                 </div>
+              ))}
             </div>
-        </section>
+
+            {/* RIGHT BUTTON */}
+            <button
+              onClick={() => scroll("right")}
+              className="absolute invisible md:visible right-2 top-1/2 -translate-y-1/2 z-20 
+                        bg-white/80 backdrop-blur-md p-3 rounded-full shadow-md 
+                        hover:scale-110 transition cursor-pointer"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </section>
     );
 }

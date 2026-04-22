@@ -1,35 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobileNavbar from "./MobileNavbar";
 import MobileMenuSheet from "./MobileMenuSheet";
 import SearchSheet from "./SearchSheet";
 import ExperienceSheet from "./ExperienceSheet";
 
 export default function MobileNavWrapper() {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [openSearch, setOpenSearch] = useState(false);
-    const [openExperience, setOpenExperience] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
+  const [openExperience, setOpenExperience] = useState(false);
 
-    return (
-        <>
-            <MobileNavbar onMenuClick={() => setMenuOpen(true)} onSearchClick={() => setOpenSearch(true)} onExperienceClick={() => setOpenExperience(true)} />
+  // Lock the body scroll when any of the sheets are open
+  useEffect(() => {
+    if (menuOpen || openSearch || openExperience) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
-            <MobileMenuSheet
-                isOpen={menuOpen}
-                onClose={() => setMenuOpen(false)}
-            />
+    // Cleanup function to ensure scrolling is re-enabled if the component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen, openSearch, openExperience]);
 
-            <SearchSheet
-                isOpen={openSearch}
-                onClose={() => setOpenSearch(false)}
-            />
+  return (
+    <>
+      <MobileNavbar
+        onMenuClick={() => setMenuOpen(true)}
+        onSearchClick={() => setOpenSearch(true)}
+        onExperienceClick={() => setOpenExperience(true)}
+      />
 
-            <ExperienceSheet
-                isOpen={openExperience}
-                onClose={() => setOpenExperience(false)}
-            />
+      <MobileMenuSheet isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-        </>
-    );
+      <SearchSheet isOpen={openSearch} onClose={() => setOpenSearch(false)} />
+
+      <ExperienceSheet
+        isOpen={openExperience}
+        onClose={() => setOpenExperience(false)}
+      />
+    </>
+  );
 }

@@ -6,6 +6,8 @@ import CTABanner from "@/utils/CTABanner";
 import Footer from "@/utils/Footer";
 import Navbar from "@/utils/NavBar";
 import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper";
+import InfiniteTourCarousel from "@/components/Home/InfiniteTourCaruosel";
+
 
 
 export default function page(){
@@ -31,6 +33,7 @@ export default function page(){
 
          <CityTourCard/>
          <CTABanner/>
+         <InfiniteTourCarousel/>
 
          <CityFAQSection city="Shimla"/>
 

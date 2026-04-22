@@ -91,7 +91,7 @@ const CityAboutSection: React.FC<CityAboutProps> = ({
         {/* READ MORE BUTTON */}
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-4 text-orange-600 font-medium text-sm hover:underline focus:outline-none"
+          className="mt-4 text-orange-600 font-medium text-sm cursor-pointer hover:underline focus:outline-none"
         >
           {expanded ? "Read Less ▲" : "Read More ▼"}
         </button>

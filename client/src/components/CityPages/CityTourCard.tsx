@@ -21,10 +21,10 @@ const packages = [
   {
     id: 1,
     category: "Manali",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=900&q=80",
-    title: "7-Days Manali Snow Adventure | Rohtang Pass & Solang Valley",
+    image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80", // Manali snow mountains
+    title: "7 Days Manali Snow Adventure | Rohtang Pass & Solang Valley",
     duration: "7 days & 6 nights",
-    location: "Manali · Solang · Rohtang",
+    location: "Manali",
     originalPrice: "₹42,500",
     price: "₹28,999",
     rating: "4.8",
@@ -33,61 +33,61 @@ const packages = [
   {
     id: 2,
     category: "Spiti Valley",
-    image: "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=900&q=80",
-    title: "8-Days Spiti Valley Circuit | Key Monastery & Chandratal Lake",
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=900&q=80", // Spiti mountains desert
+    title: "8 Days Spiti Valley Circuit | Key Monastery & Chandratal Lake",
     duration: "8 days & 7 nights",
-    location: "Kaza · Key · Chandratal",
+    location: "Kaza",
     originalPrice: "₹38,200",
     price: "₹24,499",
-    rating: "4.8",
+    rating: "4.7",
     reviewCount: 196,
   },
   {
     id: 3,
     category: "Shimla",
-    image: "https://images.unsplash.com/photo-1570458436416-b8fcccfe883f?w=900&q=80",
-    title: "5-Days Shimla & Kufri Heritage Tour | Colonial Charm & Snowfields",
+    image: "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=900&q=80", // Shimla city hills
+    title: "5 Days Shimla & Kufri Tour | Colonial Charm & Snowfields",
     duration: "5 days & 4 nights",
     location: "Shimla · Kufri · Chail",
     originalPrice: "₹22,750",
     price: "₹15,499",
-    rating: "4.8",
+    rating: "4.6",
     reviewCount: 312,
   },
   {
     id: 4,
     category: "Kasol",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=900&q=80",
-    title: "6-Days Parvati Valley Trek | Kheerganga & Kasol Riverside Camps",
+    image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80", // Kasol riverside
+    title: "6 Days Parvati Valley Trek | Kheerganga & Kasol Camps",
     duration: "6 days & 5 nights",
     location: "Kasol · Kheerganga · Tosh",
     originalPrice: "₹18,500",
     price: "₹12,999",
-    rating: "4.8",
+    rating: "4.7",
     reviewCount: 174,
   },
   {
     id: 5,
     category: "Dharamshala",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=900&q=80",
-    title: "5-Days Dharamshala & McLeod Ganj | Triund Trek & Tibetan Culture",
+    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=900&q=80", // Dharamshala monastery
+    title: "5 Days Dharamshala & McLeod Ganj | Triund Trek Experience",
     duration: "5 days & 4 nights",
-    location: "Dharamshala · McLeod · Triund",
+    location: "Dharamshala · McLeod Ganj · Triund",
     originalPrice: "₹19,200",
     price: "₹13,499",
-    rating: "4.0",
+    rating: "4.5",
     reviewCount: 143,
   },
   {
     id: 6,
     category: "Dalhousie",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80",
-    title: "4-Days Dalhousie & Khajjiar | Scotland of India Weekend Escape",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80", // Khajjiar meadow
+    title: "4 Days Dalhousie & Khajjiar | Mini Switzerland of India",
     duration: "4 days & 3 nights",
     location: "Dalhousie · Khajjiar · Chamba",
     originalPrice: "₹15,999",
     price: "₹10,499",
-    rating: "4.8",
+    rating: "4.6",
     reviewCount: 121,
   },
 ];
@@ -180,7 +180,7 @@ export default function PackageCards() {
                     <span className="text-white/50 text-sm font-medium ml-1">/person</span>
                   </p>
                 </div>
-                <button className="inline-flex items-center gap-2 bg-white   text-gray-900 text-sm font-bold px-6 py-3.5 rounded-lg transition-all duration-300 cursor-pointer">
+                <button className="inline-flex items-center gap-2 bg-white   text-gray-900 text-sm font-bold px-6 py-3.5 rounded-3xl transition-all duration-300 cursor-pointer">
                   Get Quotes
                   <ChevronRight size={16} strokeWidth={2.5} />
                 </button>
