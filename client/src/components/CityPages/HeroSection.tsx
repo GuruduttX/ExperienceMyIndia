@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Globe,
@@ -13,59 +13,28 @@ import {
   Award,
   Shield,
 } from "lucide-react";
-import Navbar from "@/utils/NavBar";
 
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
-    eyebrow: "Summer Sale — Up to 40% OFF",
-    title: "North East India",
-    subtitle: "Tour Packages",
-    description: "Misty valleys, living root bridges & untouched wilderness await you.",
-    location: "Meghalaya · Sikkim · Arunachal",
-    originalPrice: "₹28,213",
-    price: "₹16,928",
-    saving: "40% OFF",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=80",
-    eyebrow: "Heritage Special — Up to 32% OFF",
-    title: "Rajasthan",
-    subtitle: "Heritage Packages",
-    description: "Royal forts, golden deserts and the colours of a living culture.",
-    location: "Jaipur · Udaipur · Jaisalmer",
-    originalPrice: "₹32,500",
-    price: "₹21,999",
-    saving: "32% OFF",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1600&q=80",
-    eyebrow: "Monsoon Deals — Up to 35% OFF",
-    title: "Kerala Backwaters",
-    subtitle: "Nature Escapes",
-    description: "Houseboat sunsets, spice gardens and tranquil lagoon mornings.",
-    location: "Alleppey · Munnar · Varkala",
-    originalPrice: "₹24,000",
-    price: "₹15,499",
-    saving: "35% OFF",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80",
-    eyebrow: "Himalayan Specials — Up to 38% OFF",
-    title: "Himachal Pradesh",
-    subtitle: "Adventure Packages",
-    description: "Snow-capped peaks, cedar forests and starlit mountain nights.",
-    location: "Manali · Spiti · Kasol",
-    originalPrice: "₹22,000",
-    price: "₹13,699",
-    saving: "38% OFF",
-  },
-];
+const heroData = {
+  images: [
+    "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1600&q=80",
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+    "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1600&q=80",
+    "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=1600&q=80",
+  ],
+  eyebrow: "Himalayan Specials - Up to 38% OFF",
+  title: "Himachal Pradesh",
+  subtitle: "Adventure Packages",
+  description: "Snow-capped peaks, cedar forests and starlit mountain nights.",
+  location: "Manali - Spiti - Kasol",
+  originalPrice: "Rs 22,000",
+  price: "Rs 13,699",
+  saving: "38% OFF",
+};
 
 const destinations = [
-  { name: "Manali", price: "₹12,499" },
-  { name: "Goa", price: "₹9,999" },
-  { name: "Coorg", price: "₹8,499" },
+  { name: "Manali", price: "Rs 12,499" },
+  { name: "Spiti", price: "Rs 18,999" },
+  { name: "Kasol", price: "Rs 9,999" },
 ];
 
 const stats = [
@@ -78,41 +47,40 @@ const stats = [
 export default function HeroSection() {
   const [current, setCurrent]   = useState(0);
   const [animating, setAnimating] = useState(false);
+  const images = heroData.images;
 
-  const goTo = useCallback(
-    (index: number) => {
-      if (animating) return;
-      setAnimating(true);
-      setTimeout(() => { setCurrent(index); setAnimating(false); }, 350);
-    },
-    [animating]
-  );
+  const goTo = (index: number) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => { setCurrent(index); setAnimating(false); }, 350);
+  };
 
-  const prev = () => goTo(current === 0 ? slides.length - 1 : current - 1);
-  const next = useCallback(
-    () => goTo(current === slides.length - 1 ? 0 : current + 1),
-    [current, goTo]
-  );
+  const prev = () => goTo(current === 0 ? images.length - 1 : current - 1);
+  const next = () => goTo(current === images.length - 1 ? 0 : current + 1);
 
   useEffect(() => {
-    const t = setInterval(next, 5000);
+    const t = setInterval(() => {
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrent((value) => (value === heroData.images.length - 1 ? 0 : value + 1));
+        setAnimating(false);
+      }, 350);
+    }, 5000);
     return () => clearInterval(t);
-  }, [next]);
-
-  const slide = slides[current];
+  }, []);
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden flex flex-col">
 
       {/* ── BACKGROUND IMAGE ── */}
-      {slides.map((s, i) => (
+      {images.map((image, i) => (
         <div
           key={i}
           className={`absolute inset-0 transition-opacity duration-500 ${i === current && !animating ? "opacity-100" : "opacity-0"}`}
         >
           <Image
-            src={s.image}
-            alt={s.title}
+            src={image}
+            alt={`${heroData.title} image ${i + 1}`}
             fill
             priority={i === 0}
             className="object-cover object-center"
@@ -124,8 +92,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/38 to-black/22 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/28 via-transparent to-black/18 z-[1]" />
 
-      {/* ── NAV ── */}
-      <Navbar/>
+      
 
       {/* ── MAIN CONTENT ── */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-28 pb-[230px] sm:px-6 sm:pt-32 sm:pb-36 md:px-10 lg:px-56 lg:pt-28 lg:pb-28 xl:px-64 2xl:px-80">
@@ -151,36 +118,36 @@ export default function HeroSection() {
 
           <div className="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-400/35 rounded-full px-4 py-1.5 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-            <span className="text-orange-300 text-[11px] font-semibold uppercase tracking-widest">{slide.eyebrow}</span>
+            <span className="text-orange-300 text-[11px] font-semibold uppercase tracking-widest">{heroData.eyebrow}</span>
           </div>
 
           <h1 className="text-white font-extrabold leading-[1.06] tracking-tight mb-4" style={{ fontSize: "clamp(38px, 6vw, 66px)" }}>
             <span className="text-orange-400 relative inline-block">
-              {slide.title}
+              {heroData.title}
               <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-400 to-orange-300 rounded-full" />
             </span>
             <br />
-            <span>{slide.subtitle}</span>
+            <span>{heroData.subtitle}</span>
           </h1>
 
           <p className="text-white/55 text-base md:text-[17px] font-normal leading-relaxed mb-4 max-w-xl mx-auto">
-            {slide.description}
+            {heroData.description}
           </p>
 
           <div className="inline-flex items-center gap-1.5 text-white/45 text-[12.5px] mb-7">
             <MapPin size={13} className="text-orange-400" strokeWidth={2} />
-            {slide.location}
+            {heroData.location}
           </div>
 
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-3 bg-black/40 border border-white/10 rounded-xl px-5 py-3 backdrop-blur-md">
+          <div className="flex justify-center mb-8 px-1">
+            <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-xl border border-white/10 bg-black/40 px-3 py-3 backdrop-blur-md sm:gap-3 sm:px-5">
               <span className="text-white/40 text-[12px]">Starting at</span>
-              <span className="text-white/35 text-sm line-through">{slide.originalPrice}</span>
-              <span className="text-white font-extrabold text-xl tracking-tight">{slide.price}</span>
+              <span className="text-white/35 text-sm line-through">{heroData.originalPrice}</span>
+              <span className="text-white font-extrabold text-xl tracking-tight">{heroData.price}</span>
               <span className="text-white/40 text-[12px]">/Adult</span>
-              <div className="w-px h-6 bg-white/12" />
+              <div className="hidden h-6 w-px bg-white/12 sm:block" />
               <span className="bg-orange-500 text-white text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-md">
-                {slide.saving}
+                {heroData.saving}
               </span>
             </div>
           </div>
@@ -220,7 +187,7 @@ export default function HeroSection() {
         </button>
 
         <div className="flex items-center gap-2">
-          {slides.map((_, i) => (
+          {images.map((_, i) => (
             <button key={i} onClick={() => goTo(i)} className={`rounded-full transition-all duration-300 cursor-pointer border-none ${i === current ? "w-6 h-2 bg-orange-400" : "w-2 h-2 bg-white/30 hover:bg-white/55"}`} />
           ))}
         </div>
@@ -257,3 +224,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

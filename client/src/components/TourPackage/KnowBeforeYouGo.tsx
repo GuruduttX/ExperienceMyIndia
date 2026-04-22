@@ -20,7 +20,7 @@ export default function KnowBeforeYouGo() {
                         Important Information
                     </p>
 
-                    <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-snug">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
                         Know Before You Go
                     </h2>
 

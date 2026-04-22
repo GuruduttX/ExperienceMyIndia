@@ -36,12 +36,12 @@ export default function ReviewSection() {
     const total = ratingData.reduce((acc, r) => acc + r.count, 0);
 
     return (
-        <section className="w-full bg-white pt-5 pb-10 px-6">
+        <section className="w-full bg-white pt-5 pb-10 px-6 md:px-0">
             <div className="max-w-6xl mx-auto">
 
                 {/* 🔥 HEADER */}
                 <div className="mb-12">
-                    <h2 className="text-3xl md:text-4xl font-semibold">
+                    <h2 className="text-2xl md:text-3xl font-semibold">
                         Traveler Reviews
                     </h2>
                     <p className="text-gray-500 text-sm mt-2">

@@ -50,7 +50,7 @@ export default function PolicySection() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <section className="w-full bg-white pb-10 px-6">
+        <section className="w-full bg-white pb-10 px-6 md:px-0">
             <div className="max-w-4xl mx-auto">
 
                 {/* 🔥 TITLE */}

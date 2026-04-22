@@ -33,9 +33,9 @@ export default function DestinationRoutes(){
 
 
     return(
-        <section className="space-y-12 px-6 sm:px-0">
+        <section className="space-y-12 px-6 md:px-0">
                 <div>
-                    <h3 className="text-2xl font-semibold mb-4">
+                    <h3 className="text-lg md:text-xl font-semibold mb-4">
                         Destination Routes
                     </h3>
 
