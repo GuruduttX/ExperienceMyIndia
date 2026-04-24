@@ -1,6 +1,10 @@
 "use client";
+import { usePathname } from "next/navigation";
 
 export default function UnderConstruction() {
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
+  const lastSegment = segments[segments.length - 1];
   return (
     <section className="bg-white py-12 md:py-24 flex items-center justify-center min-h-[70vh]">
       <div className="max-w-3xl w-full mx-4 md:mx-6">
@@ -30,7 +34,7 @@ export default function UnderConstruction() {
               is Coming
               <br />
               <span className="font-normal text-gray-400 text-[18px] md:text-[20px]">
-                We're building your next great experience
+                We're building your next great {lastSegment}
               </span>
             </h1>
 

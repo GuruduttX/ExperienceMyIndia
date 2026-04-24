@@ -81,7 +81,7 @@ function NavDropDown({ title, data }: { title: string; data: any }) {
       </button>
 
       {open && (
-        <div className="absolute left-1/2 -translate-x-1/2 top-10 w-[900px] rounded-3xl bg-white shadow-[0_40px_100px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50">
+        <div className="absolute left-1/2 -translate-x-1/2 top-10 w-[95vw] lg:w-[900px] rounded-3xl bg-white shadow-[0_40px_100px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50">
           <div className="bg-gradient-to-r from-orange-100 to-orange-200 px-6 py-3 flex justify-between text-sm font-medium text-black">
             <span>🔥 Exclusive Deals – Up to 40% OFF</span>
             <div className="flex gap-6 text-xs">
@@ -255,7 +255,7 @@ function SearchDropDown() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-14 w-[750px] rounded-3xl bg-white shadow-[0_40px_100px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50 flex flex-col cursor-default">
+        <div className="absolute right-0 top-14 w-[95vw] md:w-[700px] lg:w-[750px] rounded-3xl bg-white shadow-[0_40px_100px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50 flex flex-col cursor-default">
           {/* Top Input Bar */}
           <div className="bg-gradient-to-r from-orange-50 to-orange-100 px-7 py-5 flex items-center border-b border-orange-200/60">
             <Search size={22} className="text-orange-500 mr-4" />
@@ -412,7 +412,9 @@ export default function Navbar() {
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-2 md:gap-4">
           {/* SEARCH WITH DROPDOWN */}
-          <SearchDropDown />
+          <div className="hidden md:block">
+            <SearchDropDown />
+          </div>
 
           {/* LOGIN */}
           <button className="px-3 md:px-5 h-9 md:h-10 rounded-full bg-gradient-to-r from-[#FF9933] to-[#ff7a00] text-white text-sm font-medium shadow-md hover:scale-105 transition">
