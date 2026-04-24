@@ -61,3 +61,36 @@
 .animate-scroll {
   animation: scroll 25s linear infinite;
 }
+
+
+/* Marquee Animation */
+
+
+/* Wrapper */
+.marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Track animation */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+/* Smooth infinite scroll */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover (premium feel) */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
