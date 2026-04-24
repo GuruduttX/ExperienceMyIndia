@@ -71,7 +71,14 @@ const tours = [
   },
 ];
 
-export default function HomeTourSection() {
+interface HomeTourSectionProps {
+  stateName?: string;
+  data?: typeof tours;
+}
+
+export default function HomeTourSection({ stateName = "India", data }: HomeTourSectionProps) {
+  const toursData = data && data.length ? data : tours;
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -96,7 +103,7 @@ export default function HomeTourSection() {
       <div className="mb-8 md:mb-10 px-4 md:px-0">
         <div className="flex items-center justify-between gap-4">
           <h2 className="text-2xl font-semibold whitespace-nowrap">
-            Explore India
+            Explore {stateName}
           </h2>
 
           <div className="flex flex-col items-end gap-3 md:flex-row md:items-center md:gap-4">
@@ -126,7 +133,7 @@ export default function HomeTourSection() {
         ref={scrollRef}
         className="flex gap-4 md:gap-8 overflow-x-auto scroll-smooth scrollbar-hide px-4 md:px-0"
       >
-        {tours.map((tour, i) => (
+        {toursData.map((tour, i) => (
           <div key={i} className="min-w-[calc(100vw-2rem)] md:min-w-[400px]">
             <HomeTourCard tour={tour} />
           </div>

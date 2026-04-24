@@ -7,6 +7,8 @@ import BlogCTA from "@/components/blog/BlogCTA";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogContent from "@/components/blog/BlogContent";
 import RelatedPackages from "@/components/blog/Relatedpackages";
+import LeaveComment from "@/components/blog/Leavecomment";
+import ReadMoreAbout from "@/components/blog/Readmoreabout";
 
 export default function BlogPost() {
   // Hardcoded data for the blog post (To be replaced with API fetch later)
@@ -89,7 +91,7 @@ export default function BlogPost() {
 
           {/* Main Content & Sidebar Grid */}
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12">
-            <BlogContent content={blogData.content} />
+            <BlogContent content={blogData.content} title={blogData.title} />
 
             {/* Sticky Sidebar Form */}
             <aside className="lg:col-span-4 w-full">
@@ -99,6 +101,56 @@ export default function BlogPost() {
 
           {/* Bottom Sections: FAQs & CTA */}
           <div className="max-w-4xl mx-auto mt-24 space-y-16">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 max-w-7xl mx-auto px-4 md:px-6 py-10">
+              {/* Left — comment form (always visible) */}
+              <LeaveComment />
+
+              {/* Right — read more list (desktop only, self-hides on mobile via hidden lg:flex) */}
+              <ReadMoreAbout
+                topic="Kerala"
+                posts={[
+                  {
+                    id: "1",
+                    slug: "hidden-backwaters-kerala",
+                    title:
+                      "The Hidden Backwaters of Kerala No Tourist Knows About",
+                    tag: "Destinations",
+                    readTime: "6 min read",
+                  },
+                  {
+                    id: "2",
+                    slug: "munnar-tea-trail",
+                    title:
+                      "Munnar Tea Trail: Plantations, Mist and the Perfect Brew",
+                    tag: "Hidden Gems",
+                    readTime: "4 min read",
+                  },
+                  {
+                    id: "3",
+                    slug: "kerala-complete-circuit",
+                    title:
+                      "Kerala Complete Circuit — 8 Days, 7 Nights, One Epic Journey",
+                    tag: "Travel Tips",
+                    readTime: "7 min read",
+                  },
+                  {
+                    id: "4",
+                    slug: "wayanad-hidden-forest",
+                    title:
+                      "Wayanad Hidden Forest Escape: Everything You Need to Know",
+                    tag: "Hidden Gems",
+                    readTime: "5 min read",
+                  },
+                  {
+                    id: "5",
+                    slug: "kerala-luxury-houseboat",
+                    title: "Luxury Houseboats in Alleppey: Are They Worth It?",
+                    tag: "Luxury",
+                    readTime: "4 min read",
+                  },
+                ]}
+              />
+            </div>
             <BlogFaqs />
             <RelatedPackages locationName="Kerala" locationSlug="kerala" />
             {/* Redesigned CTA */}

@@ -138,7 +138,7 @@ export default function Hero() {
               Top Destinations
             </h2>
 
-            <div className="flex flex-col gap-4">
+            <div className="hidden flex-col gap-4 ">
               {destinations.map((item, index) => (
                 <div
                   key={index}

@@ -83,7 +83,6 @@ export default function ExperienceSheet({
           </h2>
         </div>
 
-        {/* CONTENT */}
         <div className="px-4 pb-12 space-y-4 overflow-y-auto h-[calc(90vh-90px)]">
           <Accordion title="Popular Destinations">
             <ListItem label="Manali" />
@@ -111,8 +110,13 @@ export default function ExperienceSheet({
   );
 }
 
-/* 🔥 MODERN ACCORDION */
-function Accordion({ title, children }: any) {
+function Accordion({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -135,7 +139,6 @@ function Accordion({ title, children }: any) {
         </div>
       </button>
 
-      {/* CONTENT */}
       <div
         className={`transition-all duration-300 overflow-hidden ${
           open ? "max-h-96 pb-3 opacity-100" : "max-h-0 opacity-0"
@@ -147,7 +150,6 @@ function Accordion({ title, children }: any) {
   );
 }
 
-/* 🔥 MODERN LIST ITEM */
 function ListItem({ label }: { label: string }) {
   return (
     <div className="flex items-center justify-between px-4 py-3 mb-1 rounded-2xl hover:bg-gray-50 active:bg-gray-100 transition-colors cursor-pointer group">

@@ -43,7 +43,7 @@ const duplicatedTours = [...tours, ...tours];
 
 export default function InfiniteTourCarousel() {
     return (
-        <section className="py-16 bg-white">
+        <section className="py-8 md:py-16 bg-white">
 
             {/* 🔥 SECTION TITLE */}
             <div className="text-center mb-10">

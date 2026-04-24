@@ -256,7 +256,7 @@ export default function BlogHero({ blogData, marqueeImages }: BlogHeroProps) {
           <span className="inline-block bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5">
             {blogData.category}
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-7 tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-7 tracking-tight">
             {blogData.title}
           </h1>
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-7 text-sm text-gray-500 font-medium">
