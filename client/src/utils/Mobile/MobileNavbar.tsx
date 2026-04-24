@@ -8,10 +8,12 @@ export default function MobileNavbar({
   onMenuClick,
   onSearchClick,
   onExperienceClick,
+  onActivitiesClick,
 }: {
   onMenuClick?: () => void;
   onSearchClick?: () => void;
   onExperienceClick?: () => void;
+  onActivitiesClick?: () => void;
 }) {
   const pathname = usePathname();
 
@@ -78,8 +80,8 @@ export default function MobileNavbar({
         </div>
 
         {/* ACTIVITIES */}
-        <Link
-          href="/activities"
+        <button
+          onClick={onActivitiesClick}
           className="flex flex-col items-center justify-center w-[20%] ml-auto relative"
         >
           {pathname === "/activities" && (
@@ -99,7 +101,7 @@ export default function MobileNavbar({
           >
             Activities
           </span>
-        </Link>
+        </button>
 
         {/* MENU BUTTON */}
         <button

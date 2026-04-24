@@ -5,7 +5,8 @@ import {
   X,
   ChevronRight,
   Home,
-  Compass,
+  Settings,
+  Info,
   BookOpen,
   Activity,
   User,
@@ -129,11 +130,12 @@ export default function MobileMenuSheet({
             label="Home"
             onClick={() => handleNavigate("/")}
           />
+          
 
           <MenuItem
-            icon={<Compass size={20} />}
-            label="Experiences"
-            onClick={() => handleNavigate("/experiences")}
+            icon={<Info size={20}/>}
+            label="About"
+            onClick={() => handleNavigate("/about")}
           />
 
           <MenuItem
@@ -143,9 +145,9 @@ export default function MobileMenuSheet({
           />
 
           <MenuItem
-            icon={<Activity size={20} />}
-            label="Activities"
-            onClick={() => handleNavigate("/activities")}
+            icon={<Settings size={20} />}
+            label="Settings"
+            onClick={() => handleNavigate("/settings")}
             isLast
           />
         </div>
@@ -171,13 +173,13 @@ function MenuItem({
       className={`flex items-center justify-between px-5 py-4 ${!isLast ? "border-b border-gray-50" : ""} active:bg-gray-50 transition-colors cursor-pointer group`}
     >
       <div className="flex items-center gap-4">
-        <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+        <div className="text-orange-500">
           {icon}
         </div>
         <span className="text-[16px] font-medium text-gray-800">{label}</span>
       </div>
 
-      <ChevronRight size={20} strokeWidth={1.5} className="text-gray-300" />
+      <ChevronRight size={20} strokeWidth={1.20} className="text-gray-300" />
     </div>
   );
 }

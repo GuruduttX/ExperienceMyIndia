@@ -5,15 +5,17 @@ import MobileNavbar from "./MobileNavbar";
 import MobileMenuSheet from "./MobileMenuSheet";
 import SearchSheet from "./SearchSheet";
 import ExperienceSheet from "./ExperienceSheet";
+import ActivitiesSheet from "./ActivitiesSheet";
 
 export default function MobileNavWrapper() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openExperience, setOpenExperience] = useState(false);
+  const [openActivities, setOpenActivities] = useState(false);
 
   // Lock the body scroll when any of the sheets are open
   useEffect(() => {
-    if (menuOpen || openSearch || openExperience) {
+    if (menuOpen || openSearch || openExperience || openActivities) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -23,7 +25,7 @@ export default function MobileNavWrapper() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen, openSearch, openExperience]);
+  }, [menuOpen, openSearch, openExperience, openActivities]);
 
   return (
     <>
@@ -31,6 +33,7 @@ export default function MobileNavWrapper() {
         onMenuClick={() => setMenuOpen(true)}
         onSearchClick={() => setOpenSearch(true)}
         onExperienceClick={() => setOpenExperience(true)}
+        onActivitiesClick={() => setOpenActivities(true)}
       />
 
       <MobileMenuSheet isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
@@ -40,6 +43,11 @@ export default function MobileNavWrapper() {
       <ExperienceSheet
         isOpen={openExperience}
         onClose={() => setOpenExperience(false)}
+      />
+
+      <ActivitiesSheet
+        isOpen={openActivities}
+        onClose={() => setOpenActivities(false)}
       />
     </>
   );

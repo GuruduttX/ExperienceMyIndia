@@ -58,11 +58,12 @@ const cityCards: CityCard[] = [
     tagline: "High passes, monasteries, and moonlike terrain",
     accent: "Adventure",
     image:
-      "https://images.unsplash.com/photo-1613646746849-3a063dd0a1e0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFkYWtofGVufDB8fDB8fHww",
   },
 ];
 
-const defaultTransform = "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)";
+const defaultTransform =
+  "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)";
 
 export default function PopularCitiesShowcase() {
   const railRef = useRef<HTMLDivElement>(null);
@@ -71,12 +72,11 @@ export default function PopularCitiesShowcase() {
     const rail = railRef.current;
     if (!rail) return;
 
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
     let animationFrame = 0;
     let lastTime = 0;
 
     const step = (time: number) => {
-      if (!mediaQuery.matches || !rail) return;
+      if (!rail) return;
 
       if (!lastTime) {
         lastTime = time;
@@ -98,16 +98,12 @@ export default function PopularCitiesShowcase() {
     const start = () => {
       window.cancelAnimationFrame(animationFrame);
       lastTime = 0;
-      if (mediaQuery.matches) {
-        animationFrame = window.requestAnimationFrame(step);
-      }
+      animationFrame = window.requestAnimationFrame(step);
     };
 
     start();
-    mediaQuery.addEventListener("change", start);
 
     return () => {
-      mediaQuery.removeEventListener("change", start);
       window.cancelAnimationFrame(animationFrame);
     };
   }, []);
@@ -139,7 +135,7 @@ export default function PopularCitiesShowcase() {
 
         <div
           ref={railRef}
-          className="scrollbar-hide mt-4 flex gap-6 overflow-x-auto pb-6 pt-6 md:snap-x md:snap-mandatory"
+          className="scrollbar-hide mt-4 flex gap-6 overflow-x-auto pb-6 pt-6"
         >
           {cityCards.map((card) => (
             <TiltCard key={card.city} card={card} />
@@ -172,7 +168,7 @@ function TiltCard({
     const rotateX = (0.5 - py) * 14;
 
     setTransform(
-      `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.035)`
+      `perspective(1400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.035)`,
     );
   };
 
@@ -182,9 +178,7 @@ function TiltCard({
 
   return (
     <article
-      className={`group w-[min(82vw,22rem)] min-w-[18rem] shrink-0 md:w-[20rem] md:snap-center ${
-        duplicate ? "md:hidden" : ""
-      }`}
+      className="group w-[min(82vw,22rem)] min-w-[18rem] shrink-0 md:w-[20rem]"
       aria-hidden={duplicate ? true : undefined}
     >
       <Link href={`/city/${card.slug}`} className="block">
@@ -210,7 +204,13 @@ function TiltCard({
             <div className="absolute bottom-0 left-0 right-0 px-8 pb-6 pt-5 text-white sm:px-9">
               <span
                 className="inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em]"
-                style={{ backgroundColor: card.accent === "Heritage" ? "rgba(255, 210, 150, 0.92)" : "rgba(220, 241, 225, 0.92)", color: "#1f2937" }}
+                style={{
+                  backgroundColor:
+                    card.accent === "Heritage"
+                      ? "rgba(255, 210, 150, 0.92)"
+                      : "rgba(220, 241, 225, 0.92)",
+                  color: "#1f2937",
+                }}
               >
                 {card.accent}
               </span>
