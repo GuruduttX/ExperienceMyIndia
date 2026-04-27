@@ -62,7 +62,7 @@ export default function TourHoverUpCarousel() {
   };
 
   return (
-    <section className="relative w-full py-20 bg-white overflow-hidden">
+    <section className="relative w-full py-8 md:py-20  bg-white overflow-hidden">
       {/* Heading */}
       <div className="text-center mb-14">
         <h2 className="text-4xl font-semibold text-gray-900">
@@ -76,7 +76,7 @@ export default function TourHoverUpCarousel() {
       {/* Carousel */}
       <div
         ref={sliderRef}
-        className="flex items-center gap-4 md:gap-8 px-2 md:px-10 py-13 md:py-14 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
+        className="flex items-center gap-4 md:gap-8 px-2 md:px-10 py-2 md:py-14 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
         onScroll={(e) => {
           const target = e.target as HTMLDivElement;
           const containerWidth = target.clientWidth;

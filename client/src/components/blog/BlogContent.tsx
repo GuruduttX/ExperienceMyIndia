@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Share2, Tag, Quote } from "lucide-react";
+import SocialShare from "./Socialshare";
 
 interface ContentBlock {
   type: string;
@@ -10,9 +11,10 @@ interface ContentBlock {
 
 interface BlogContentProps {
   content: ContentBlock[];
+  title: string
 }
 
-export default function BlogContent({ content }: BlogContentProps) {
+export default function BlogContent({ content, title}: BlogContentProps) {
   return (
     <article className="lg:col-span-8 w-full max-w-3xl mx-auto lg:mx-0">
       <div className="max-w-none space-y-8">
@@ -31,7 +33,7 @@ export default function BlogContent({ content }: BlogContentProps) {
             return (
               <h2
                 key={index}
-                className="text-3xl md:text-4xl font-bold text-gray-900 mt-16 mb-6 tracking-tight"
+                className="text-xl md:text-4xl font-bold text-gray-900 mt-16 mb-6 tracking-tight"
               >
                 {block.text}
               </h2>
@@ -67,10 +69,9 @@ export default function BlogContent({ content }: BlogContentProps) {
             </span>
           </div>
         </div>
-        <button className="flex items-center gap-2 text-gray-500 hover:text-orange-500 font-medium transition">
-          <Share2 size={20} />
-          Share Article
-        </button>
+      </div>
+      <div>
+        <SocialShare title={title} />
       </div>
     </article>
   );
