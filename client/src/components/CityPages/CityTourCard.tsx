@@ -48,7 +48,7 @@ const packages = [
     image: "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=900&q=80", // Shimla city hills
     title: "5 Days Shimla & Kufri Tour | Colonial Charm & Snowfields",
     duration: "5 days & 4 nights",
-    location: "Shimla · Kufri · Chail",
+    location: "Shimla",
     originalPrice: "₹22,750",
     price: "₹15,499",
     rating: "4.6",
@@ -60,7 +60,7 @@ const packages = [
     image: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=900&q=80", // Kasol riverside
     title: "6 Days Parvati Valley Trek | Kheerganga & Kasol Camps",
     duration: "6 days & 5 nights",
-    location: "Kasol · Kheerganga · Tosh",
+    location: "Kasol",
     originalPrice: "₹18,500",
     price: "₹12,999",
     rating: "4.7",
@@ -72,7 +72,7 @@ const packages = [
     image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=900&q=80", // Dharamshala monastery
     title: "5 Days Dharamshala & McLeod Ganj | Triund Trek Experience",
     duration: "5 days & 4 nights",
-    location: "Dharamshala · McLeod Ganj · Triund",
+    location: "Dharamshala",
     originalPrice: "₹19,200",
     price: "₹13,499",
     rating: "4.5",
@@ -84,7 +84,7 @@ const packages = [
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80", // Khajjiar meadow
     title: "4 Days Dalhousie & Khajjiar | Mini Switzerland of India",
     duration: "4 days & 3 nights",
-    location: "Dalhousie · Khajjiar · Chamba",
+    location: "Dalhousie",
     originalPrice: "₹15,999",
     price: "₹10,499",
     rating: "4.6",
@@ -103,10 +103,10 @@ export default function PackageCards() {
         <p className="text-orange-500 text-xs font-bold uppercase tracking-[3px] mb-3">
           Explore Himachal Pradesh
         </p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
           Choose Your Experience
         </h2>
-        <p className="text-gray-500 mt-4 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-500 mt-4 text-sm md:text-lg max-w-2xl mx-auto">
           Handpicked adventures through the majestic Himalayas
         </p>
       </div>
@@ -168,19 +168,21 @@ export default function PackageCards() {
                 {pkg.duration}
               </div>
               {/* Divider */}
-              <div className="h-px bg-white/20 mb-5" />
-              {/* Price + CTA */}
-              <div className="flex items-center justify-between">
+              <div className="relative mb-5">
+                <div className="h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                <div className="absolute inset-0 blur-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              </div>             
+               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white/40 text-sm line-through leading-none mb-1.5">
                     {pkg.originalPrice}
                   </p>
-                  <p className="text-white font-extrabold text-2xl leading-none tracking-tight">
+                  <p className="text-white font-extrabold text-xl md:text-2xl leading-none tracking-tight">
                     {pkg.price}
                     <span className="text-white/50 text-sm font-medium ml-1">/person</span>
                   </p>
                 </div>
-                <button className="inline-flex items-center gap-2 bg-white   text-gray-900 text-sm font-bold px-6 py-3.5 rounded-3xl transition-all duration-300 cursor-pointer">
+                <button className="inline-flex items-center gap-2 bg-white   text-gray-900 text-sm font-bold px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3.5 rounded-3xl transition-all duration-300 cursor-pointer">
                   Get Quotes
                   <ChevronRight size={16} strokeWidth={2.5} />
                 </button>

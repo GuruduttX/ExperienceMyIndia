@@ -7,8 +7,14 @@ import Footer from "@/utils/Footer";
 import Navbar from "@/utils/NavBar";
 import MobileNavWrapper from "@/utils/Mobile/MobileNavWrapper";
 import InfiniteTourCarousel from "@/components/Home/InfiniteTourCaruosel";
-
-
+import ReviewsSection from "@/components/CityPages/ReviewsSection";
+import OfferBanner from "@/utils/OfferBanner";
+import ReviewsGallery from "@/components/CityPages/ReviewsGallery";
+import PopularDestinations from "@/components/CityPages/PopularDestinations";
+import CityHandbook from "@/components/CityPages/CityHandBook";
+import WhyChooseEMI from "@/utils/WhyChooseEMI";
+import CityBestDeals from "@/components/CityPages/CityBestDeals";
+import PremiumMarquee from "@/utils/PremiumMarquee";
 
 export default function page(){
     return (
@@ -30,10 +36,23 @@ export default function page(){
                 "trekking",
             ]}
          />
+         <PremiumMarquee/>
 
          <CityTourCard/>
+
          <CTABanner/>
+         <ReviewsSection/>
+         <CityBestDeals/>
+         
          <InfiniteTourCarousel/>
+         <OfferBanner/>
+
+         <PopularDestinations/>
+
+         <ReviewsGallery/>
+         <CityHandbook/>
+
+         <WhyChooseEMI/>
 
          <CityFAQSection city="Shimla"/>
 
