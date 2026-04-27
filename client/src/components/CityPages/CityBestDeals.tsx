@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
@@ -145,13 +146,15 @@ function ImageCarousel({
   return (
     <div className="relative w-full h-52 overflow-hidden rounded-t-2xl group/carousel">
       {images.map((src, i) => (
-        <img
+        <Image
           key={i}
           src={src}
-          alt=""
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+          alt="Package Image"
+          fill
+          sizes="(max-width: 768px) 100vw, 320px"
+          className={`absolute inset-0 object-cover transition-opacity duration-500 ${
             i === current ? "opacity-100" : "opacity-0"
-          }`}
+          } ${i === current ? "z-10" : "z-0"}`}
         />
       ))}
 
@@ -159,7 +162,7 @@ function ImageCarousel({
       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
 
       {/* Save badge */}
-      <div className="absolute top-3 left-3 flex items-center gap-1 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md pointer-events-none">
+      <div className="absolute top-3 left-3 z-20 flex items-center gap-1 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md pointer-events-none">
         <Tag size={10} />
         {saveBadge}
       </div>
@@ -169,7 +172,7 @@ function ImageCarousel({
         onClick={prev}
         className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center
                    rounded-full bg-white/85 text-gray-700 shadow
-                   opacity-100 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-opacity hover:bg-white"
+                   opacity-100 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-opacity hover:bg-white z-20"
       >
         <ChevronLeft size={15} />
       </button>
@@ -177,13 +180,13 @@ function ImageCarousel({
         onClick={next}
         className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center
                    rounded-full bg-white/85 text-gray-700 shadow
-                   opacity-100 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-opacity hover:bg-white"
+                   opacity-100 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-opacity hover:bg-white z-20"
       >
         <ChevronRight size={15} />
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">
+      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none z-20">
         {images.map((_, i) => (
           <span
             key={i}
@@ -257,10 +260,10 @@ function DealCardItem({ deal }: { deal: DealCard }) {
 
         {/* Actions */}
         <div className="flex gap-2">
-          <button className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl border-2 border-orange-500 text-orange-500 hover:bg-orange-50 transition-colors">
+          <button className="w-10 h-10 shrink-0 flex items-center justify-center rounded-xl cursor-pointer border-2 border-orange-500 text-orange-500 hover:bg-orange-50 transition-colors">
             <Phone size={16} />
           </button>
-          <button className="flex-1 h-10 flex items-center justify-center gap-1.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-sm font-bold rounded-xl transition-colors">
+          <button className="flex-1 h-10 flex items-center justify-center gap-1.5 cursor-pointer bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-sm font-bold rounded-xl transition-colors">
             Request Callback
             <ArrowUpRight size={14} />
           </button>
@@ -272,16 +275,15 @@ function DealCardItem({ deal }: { deal: DealCard }) {
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
 
-// Card width + gap so the scroll button moves exactly one card
-const CARD_WIDTH = 320;
-const CARD_GAP = 20;
-
 export default function HimachalBestDeals() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
+    const el = scrollRef.current;
+    if (!el) return;
+    const CARD_WIDTH = el.firstElementChild?.clientWidth || 320;
+    const CARD_GAP = 20;
+    el.scrollBy({
       left: dir === "right" ? CARD_WIDTH + CARD_GAP : -(CARD_WIDTH + CARD_GAP),
       behavior: "smooth",
     });
@@ -305,20 +307,20 @@ export default function HimachalBestDeals() {
           {/* Scroll buttons */}
           <button
             onClick={() => scroll("left")}
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200
+            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 cursor-pointer
                        text-gray-500 hover:border-orange-400 hover:text-orange-500 transition-all"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200
+            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 cursor-pointer
                        text-gray-500 hover:border-orange-400 hover:text-orange-500 transition-all"
           >
             <ChevronRight size={16} />
           </button>
 
-          <button className="flex items-center gap-1 text-xs font-semibold text-orange-500 border border-orange-300 px-3 py-1.5 rounded-lg hover:bg-orange-50 transition-colors">
+          <button className="flex items-center gap-1 text-xs font-semibold text-orange-500 border border-orange-300 px-3 py-1.5 rounded-lg hover:bg-orange-50 transition-colors cursor-pointer">
             View All <ArrowUpRight size={13} />
           </button>
         </div>
@@ -327,15 +329,14 @@ export default function HimachalBestDeals() {
       {/* Scrollable cards row — always a flex row, never a grid */}
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto pb-3"
+        className="flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth"
         style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
       >
         <style>{`.hide-scroll::-webkit-scrollbar{display:none}`}</style>
         {deals.map((deal) => (
           <div
             key={deal.id}
-            // Fixed width on every breakpoint — card is always 320px wide
-            style={{ minWidth: `${CARD_WIDTH}px`, maxWidth: `${CARD_WIDTH}px` }}
+            className="min-w-[290px] w-[80vw] sm:min-w-[320px] sm:w-[320px] snap-start"
           >
             <DealCardItem deal={deal} />
           </div>

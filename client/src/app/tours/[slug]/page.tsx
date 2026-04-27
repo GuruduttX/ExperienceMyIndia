@@ -15,7 +15,7 @@ import Navbar from '@/utils/NavBar'
 const page = () => {
     return (
         <>
-            <Navbar />
+          
             <MobileNavWrapper/>
             <TourHero />
             <TourDetails />
@@ -52,7 +52,7 @@ const page = () => {
             <KnowBeforeYouGo />
             <ReviewSection />
             <PolicySection />
-            <Footer />
+           
         </>
     )
 }
