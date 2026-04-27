@@ -121,7 +121,7 @@ export default function HeroSection() {
             <span className="text-orange-300 text-[11px] font-semibold uppercase tracking-widest">{heroData.eyebrow}</span>
           </div>
 
-          <h1 className="text-white font-extrabold leading-[1.06] tracking-tight mb-4" style={{ fontSize: "clamp(38px, 6vw, 66px)" }}>
+          <h1 className="text-white font-extrabold leading-[1.06] tracking-tight mb-4 text-3xl md:text-4xl lg:text-6xl" >
             <span className="text-orange-400 relative inline-block">
               {heroData.title}
               <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-400 to-orange-300 rounded-full" />

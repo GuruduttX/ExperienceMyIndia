@@ -6,6 +6,8 @@ import IndiaStatesStrip from "@/components/Home/IndiaStatesStrip"
 import InfiniteTourCarousel from "@/components/Home/InfiniteTourCaruosel"
 import LiveStats from "@/components/Home/LiveStats"
 import WhatsNewExperience from "@/components/Home/MobileComponents/WhatsNewSection"
+import OfferCarousel from "@/components/Home/OfferCarousel"
+import PopularCitiesShowcase from "@/components/Home/PopularCitiesShowcase"
 import ReviewSection from "@/components/Home/ReviewSection"
 import StepsSection from "@/components/Home/StepsSection"
 import TourCarousel from "@/components/Home/TourCrauosel"
@@ -21,24 +23,26 @@ const HomePage = () => {
     <>
       <HomeHero />
       <IndiaStatesStrip />
+      <OfferCarousel />
       <WhatsNewExperience />
+      <PopularCitiesShowcase />
       <ExperienceSection />
       <StepsSection />
-      <HomeTourSection />
+      <HomeTourSection stateName="Rajasthan" />
       <LiveStats />
       <TourCarousel />
-      <HomeTourSection />
+      <HomeTourSection stateName="Kashmir" />
       <ReviewSection />
       <InfiniteTourCarousel />
       <WhyChooseUs />
-      <HomeTourSection />
+      <HomeTourSection stateName="Jaipur" />
       <CTABanner />
       <TourHoverUpCarousel />
       <OfferBanner />
-      <HomeTourSection />
+      <HomeTourSection stateName="Kerala" />
       <HomeFaqs />
     </>
-  )
+  );
 }
 
 export default HomePage

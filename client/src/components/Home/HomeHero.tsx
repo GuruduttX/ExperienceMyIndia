@@ -39,7 +39,7 @@ export default function Hero() {
         setActiveIndex((prev) => (prev + 1) % destinations.length);
         setAnimatingOut(false);
       }, 1000); // 1 sec fade out duration
-    }, 3000); // Trigger every 3 seconds
+    }, 2000); // Trigger every 2 seconds
     return () => clearInterval(interval);
   }, [destinations.length]);
 
@@ -138,7 +138,7 @@ export default function Hero() {
               Top Destinations
             </h2>
 
-            <div className="flex flex-col gap-4">
+            <div className="hidden flex-col gap-4 ">
               {destinations.map((item, index) => (
                 <div
                   key={index}
