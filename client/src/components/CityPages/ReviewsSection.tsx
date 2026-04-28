@@ -298,7 +298,7 @@ export default function ReviewsSection() {
                 <button
                   onClick={() => scrollTo(activeIndex - 1)}
                   disabled={activeIndex === 0}
-                  className="w-9 h-9 rounded-full border border-gray-200 bg-white text-gray-500
+                  className="w-9 h-9 rounded-full border cursor-pointer border-gray-200 bg-white text-gray-500
                              hover:border-orange-400 hover:text-orange-500
                              disabled:opacity-30 disabled:cursor-not-allowed
                              transition-all flex items-center justify-center"
@@ -308,7 +308,7 @@ export default function ReviewsSection() {
                 <button
                   onClick={() => scrollTo(activeIndex + 1)}
                   disabled={activeIndex === reviews.length - 1}
-                  className="w-9 h-9 rounded-full border border-gray-200 bg-white text-gray-500
+                  className="w-9 h-9 rounded-full border cursor-pointer border-gray-200 bg-white text-gray-500
                              hover:border-orange-400 hover:text-orange-500
                              disabled:opacity-30 disabled:cursor-not-allowed
                              transition-all flex items-center justify-center"

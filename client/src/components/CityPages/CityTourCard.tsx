@@ -132,7 +132,7 @@ export default function PackageCards() {
         {filtered.map((pkg) => (
           <div
             key={pkg.id}
-            className="group relative rounded-3xl overflow-hidden cursor-pointer h-[540px] shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500"
+            className="group relative rounded-3xl overflow-hidden cursor-pointer  aspect-[3/4] md:aspect-[4/5]shadow-lg shadow-black/10 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500"
           >
             {/* Full background image */}
             <Image
@@ -182,9 +182,42 @@ export default function PackageCards() {
                     <span className="text-white/50 text-sm font-medium ml-1">/person</span>
                   </p>
                 </div>
-                <button className="inline-flex items-center gap-2 bg-white   text-gray-900 text-sm font-bold px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3.5 rounded-3xl transition-all duration-300 cursor-pointer">
-                  Get Quotes
-                  <ChevronRight size={16} strokeWidth={2.5} />
+                <button
+                  className="
+                    inline-flex items-center justify-center gap-2
+                    bg-white text-gray-900 font-semibold
+                    rounded-full
+                    transition-all duration-300 ease-out
+                    cursor-pointer
+
+                    /* Mobile (default) */
+                    text-xs px-3 py-2 min-w-[110px]
+
+                    /* Small screens */
+                    sm:text-sm sm:px-5 sm:py-2.5 sm:min-w-[130px]
+
+                    /* Medium screens */
+                    md:text-base md:px-6 md:py-3 md:min-w-[150px]
+
+                    /* Large screens */
+                    lg:px-7 lg:py-3.5
+
+                    /* Interaction */
+                    hover:bg-orange-500 hover:text-white
+                    
+                    active:scale-95
+
+                    /* Accessibility */
+                    focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2
+                  "
+                >
+                  <span className="whitespace-nowrap">Get Quotes</span>
+
+                  <ChevronRight
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    size={18}
+                    strokeWidth={2.5}
+                  />
                 </button>
               </div>
             </div>
@@ -192,12 +225,43 @@ export default function PackageCards() {
         ))}
       </div>
       {/* ── VIEW MORE ── */}
-      <div className="flex justify-center mt-16">
-        <button className="inline-flex items-center cursor-pointer gap-2 border border-gray-400 text-gray-800 hover:bg-gray-100 text-sm font-medium px-6 py-3 rounded-md transition-colors duration-200">
-          View All Packages
-          <ArrowRight size={16} />
-        </button>
-      </div>
+     <div className="flex justify-center mt-12 md:mt-16">
+    <button
+      className=" cursor-pointer
+        group inline-flex items-center justify-center gap-2
+        border border-gray-300 text-gray-800 bg-white
+        font-medium rounded-lg
+
+        /* Responsive sizing */
+        text-xs px-4 py-2.5
+        sm:text-sm sm:px-5 sm:py-3
+        md:text-base md:px-6 md:py-3.5
+
+        /* Layout stability */
+        min-w-[180px]
+
+        /* Transitions */
+        transition-all duration-300 ease-out
+
+        /* Subtle premium hover */
+        hover:border-gray-400 hover:bg-gray-50
+        hover:shadow-sm
+
+        /* Micro interaction */
+        active:scale-95
+
+        /* Focus (important) */
+        focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2
+      "
+    >
+      <span className="whitespace-nowrap">View All Packages</span>
+
+      <ArrowRight
+        size={18}
+        className="transition-transform duration-300 group-hover:translate-x-1"
+      />
+    </button>
+  </div>
     </section>
   );
 }

@@ -3,11 +3,9 @@ import ActivityBookingSection from "@/components/Activity/ActivityBookingSection
 import ActivityHero from "@/components/Activity/ActivityHero";
 import ExperienceHighlights from "@/components/Activity/ExperienceHighlights";
 import ExperienceTabs from "@/components/Activity/ExperienceTab";
-import Navbar from "@/utils/NavBar";
 import { OperatingHours, KnowBeforeYouGo } from "@/components/Activity/OperatingAndKnowBefore";
 import WhyChooseEMI from "@/utils/WhyChooseEMI";
 import RelatedActivity from "@/components/Activity/RelatedActivity";
-import Footer from "@/utils/Footer";
 import ActivityPolicies from "@/components/Activity/ActivityPolicies";
 import FAQSection from "@/components/Activity/FAQSection";
 
@@ -31,7 +29,6 @@ export default function page(){
      const exclusions = ["Personal expenses", "Travel insurance", "Food & beverages"];
     return (
         <div>
-            <Navbar/>
            <ActivityHero/>
            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-4">
                 <div className="lg:col-span-8 space-y-8">
@@ -56,12 +53,7 @@ export default function page(){
            <WhyChooseEMI/>
            <ActivityPolicies/>
            <RelatedActivity/>
-           <FAQSection/>
-           
-
-           <Footer/>
-          
-           
+           <FAQSection/>            
 
         </div>
     )
