@@ -59,7 +59,7 @@ export default function ExperienceHighlights() {
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-stone-900 leading-tight tracking-tight">
           Rishikesh River Rafting —{" "}
           <span className="text-orange-500">Bharmpuri Starting Point</span>
         </h1>

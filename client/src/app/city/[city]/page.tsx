@@ -13,6 +13,7 @@ import CityHandbook from "@/components/CityPages/CityHandBook";
 import WhyChooseEMI from "@/utils/WhyChooseEMI";
 import CityBestDeals from "@/components/CityPages/CityBestDeals";
 import PremiumMarquee from "@/utils/PremiumMarquee";
+import TrendingCities from "@/components/CityPages/TreindingCities";
 
 export default function page(){
     return (
@@ -37,8 +38,11 @@ export default function page(){
          <PremiumMarquee/>
 
          <CityTourCard/>
+         
 
          <CTABanner/>
+
+         <TrendingCities/>
          <ReviewsSection/>
          <CityBestDeals/>
          

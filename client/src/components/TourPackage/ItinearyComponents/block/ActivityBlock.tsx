@@ -14,7 +14,7 @@ export default function ActivityBlock({ activity }: { activity: ActivityItem }) 
           {activity.ticketIncluded ? "Ticket Included" : "Ticket Not Included"}
         </span>
       </div>
-      <Slider images={activity.images} id={activity.name} />
+      <Slider images={activity.images}  id={activity.name}/>
     </div>
   );
 }

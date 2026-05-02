@@ -15,7 +15,8 @@ import TourHoverUpCarousel from "@/components/Home/TourHoverUpCrauosel"
 import CTABanner from "@/utils/CTABanner"
 import OfferBanner from "@/utils/OfferBanner"
 import dynamic from "next/dynamic"
-const WhyChooseUs = dynamic(()=> import("@/utils/WhyChooseUs"))
+const WhyChooseUs = dynamic(()=> import("@/utils/WhyChooseUs"));
+
 
 
 const HomePage = () => {

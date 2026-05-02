@@ -124,7 +124,7 @@ export default function TourItinerarySection() {
   ];
 
   return (
-    <section className="w-full bg-[#f4f4f4] pb-10 px-3 md:px-6">
+    <section className="w-full bg-[#f4f4f4] pb-10 px-1 md:px-6">
       <div className="max-w-[800px] mx-auto pt-4">
         <div className="flex gap-1.5 flex-wrap mb-5">
           {tabs.map(({ label, Icon }, i) => (

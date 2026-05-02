@@ -2,15 +2,44 @@ import DestinationRoutes from '@/components/TourPackage/DestinationRoutes'
 import KnowBeforeYouGo from '@/components/TourPackage/KnowBeforeYouGo'
 import PolicySection from '@/components/TourPackage/PolicySection'
 import ReviewSection from '@/components/TourPackage/ReviewSection'
+import ReviewWithImage from '@/components/TourPackage/ReviewWithImage'
 import TourDetails from '@/components/TourPackage/TourDetails'
 import TourHero from '@/components/TourPackage/TourHero'
 import TourInclusionExclusion from '@/components/TourPackage/TourInclusionsExclusions'
 import TourItinerarySection from '@/components/TourPackage/TourItinearySection'
 import TourSideForm from '@/components/TourPackage/TourSideForm'
 import TripHighlights from '@/components/TourPackage/TripHighLights'
+import CTABanner from '@/utils/CTABanner'
 import Footer from '@/utils/Footer'
 import MobileNavWrapper from '@/utils/Mobile/MobileNavWrapper'
 import Navbar from '@/utils/NavBar'
+
+type TourHeroData = {
+  hero: {
+    title: string;
+    subtitle: string;
+    badgeText: string;
+
+    primaryImage: {
+      url: string;
+      alt: string;
+    };
+
+    highlightCards: {
+      title: string;
+      image: string;
+      category: "destinations" | "stays" | "activities";
+    }[];
+  };
+
+  gallery: {
+    images: {
+      url: string;
+      category: "destinations" | "stays" | "activities";
+      alt?: string;
+    }[];
+  };
+};
 
 const page = () => {
     return (
@@ -50,9 +79,10 @@ const page = () => {
             </section>
             <TourInclusionExclusion />
             <KnowBeforeYouGo />
-            <ReviewSection />
-            <PolicySection />
-           
+            <CTABanner/>
+            {/* <ReviewSection /> */}
+            <ReviewWithImage/>
+            <PolicySection />    
         </>
     )
 }
