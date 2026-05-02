@@ -212,7 +212,7 @@ export default function ActivityHero() {
 
   return (
     <>
-      <section className="relative w-full min-h-[100svh] bg-black overflow-hidden select-none">
+      <section className="relative w-full min-h-[100vh] bg-black overflow-hidden select-none">
 
         {/* ── Background images with crossfade ── */}
         {activity.images.map((img, i) => (
@@ -230,15 +230,8 @@ export default function ActivityHero() {
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
         {/* ── Top action row ── */}
-        <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-5 sm:px-10 pt-6">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-[11px] text-white/50 uppercase tracking-widest">
-            <span>Activities</span>
-            <span className="text-white/30">/</span>
-            <span>Himachal Pradesh</span>
-            <span className="text-white/30">/</span>
-            <span className="text-orange-400">Paragliding</span>
-          </div>
+        <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-10 pt-4 sm:pt-6">
+          
 
           {/* Actions */}
           {/* <div className="flex items-center gap-2">
@@ -257,81 +250,81 @@ export default function ActivityHero() {
         </div>
 
         {/* ── Main content ── */}
-        <div className="relative z-20 flex flex-col justify-end min-h-[100vh] pb-8 px-5 sm:px-10">
+        <div className="relative z-20 flex flex-col justify-end min-h-[100vh] pb-6 sm:pb-8 px-4 sm:px-10">
           <div className="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
 
             {/* ── LEFT: Info ── */}
-            <div className="lg:col-span-7 flex flex-col gap-4 mb-0 sm:mb-20 ">
+            <div className="lg:col-span-7 flex flex-col gap-3 sm:gap-4 mb-0 sm:mb-20 ">
 
               {/* Tag */}
-              <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider w-fit">
+              <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-[10px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-1 rounded-full uppercase tracking-wider w-fit">
                 <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
                 {activity.tag}
               </span>
 
               {/* Title */}
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1] tracking-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] sm:leading-[1] tracking-tight">
                   {activity.title.split(" ").slice(0, -2).join(" ")}{" "}
                   <span className="text-orange-400">
                     {activity.title.split(" ").slice(-2).join(" ")}
                   </span>
                 </h1>
-                <p className="text-white/50 text-sm font-medium mt-2 tracking-wide">
+                <p className="text-white/50 text-xs sm:text-sm font-medium mt-1.5 sm:mt-2 tracking-wide">
                   {activity.subtitle}
                 </p>
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-1.5 text-white/60 text-sm">
+              <div className="flex items-center gap-1.5 text-white/60 text-xs sm:text-sm">
                 <MapPin size={13} className="text-orange-400 shrink-0" />
                 {activity.location}
               </div>
 
               {/* Description */}
-              <p className="text-white/70 text-[15px] leading-relaxed max-w-xl">
+              <p className="text-white/70 text-sm sm:text-[15px] leading-relaxed max-w-xl">
                 {activity.description}
               </p>
 
               {/* Stats strip */}
-              <div className="flex flex-wrap gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 lg:gap-4">
                 {stats.map(({ icon: Icon, value, sub, color }) => (
                   <div
                     key={sub}
-                    className="flex items-center gap-2 bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl px-3.5 py-2.5"
+                    className="flex items-center gap-1.5 sm:gap-2 bg-white/8 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl px-2.5 sm:px-3.5 py-2"
                   >
-                    <Icon size={15} className={color ?? "text-orange-400"} />
+                    <Icon size={14} className={color ?? "text-orange-400"} />
                     <div>
-                      <p className="text-white text-sm font-bold leading-none">{value}</p>
-                      <p className="text-white/40 text-[10px] mt-0.5 leading-none">{sub}</p>
+                      <p className="text-white text-xs sm:text-sm font-bold leading-none">{value}</p>
+                      <p className="text-white/40 text-[8px] sm:text-[10px] mt-0.5 leading-none">{sub}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Trust line */}
-              <div className="flex items-center gap-1.5 text-white/40 text-xs">
-                <Shield size={12} className="text-orange-400" />
-                Certified instructors · Full safety equipment · Insured flights
+              <div className="flex items-start sm:items-center gap-1.5 text-white/40 text-[11px] sm:text-xs leading-tight sm:leading-none">
+                <Shield size={11} className="text-orange-400 shrink-0 mt-0.5 sm:mt-0" />
+                <span>Certified instructors · Full safety equipment · Insured flights</span>
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-3 pt-1">
-                <button className="flex items-center gap-2 bg-orange-500 hover:bg-orange-400 active:scale-95 text-white font-bold px-7 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-orange-500/30 text-sm">
-                  Book This Activity <ArrowRight size={15} />
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 pt-2 sm:pt-1">
+                <button className="flex items-center justify-center sm:justify-start gap-2 bg-orange-500 hover:bg-orange-400 active:scale-95 text-white font-bold px-5 sm:px-7 py-3 sm:py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-orange-500/30 text-xs sm:text-sm whitespace-nowrap order-1 sm:order-none">
+                  Book This Activity <ArrowRight size={14} className="hidden sm:block" />
                 </button>
                 <button
                   onClick={() => openLightbox(active)}
-                  className="flex items-center gap-2 border border-white/20 hover:border-orange-400/50 hover:bg-white/5 text-white/70 hover:text-white text-sm font-medium px-6 py-3.5 rounded-full transition-all duration-200 backdrop-blur-sm"
+                  className="flex items-center justify-center gap-2 border border-white/20 hover:border-orange-400/50 hover:bg-white/5 text-white/70 hover:text-white text-xs sm:text-sm font-medium px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition-all duration-200 backdrop-blur-sm"
                 >
-                  <Camera size={15} />
+                  <Camera size={14} />
                   View All Photos
                 </button>
               </div>
             </div>
 
-            {/* ── RIGHT: Image selector ── */}
-            <div className="lg:col-span-5 flex flex-col gap-3">
+            {/* ── RIGHT: Image selector (Desktop only) ── */}
+            <div className="hidden lg:flex lg:col-span-5 flex-col gap-3">
               <div className="flex items-center justify-between">
                 <span className="text-white/30 text-[11px] uppercase tracking-widest">
                   Photos
@@ -378,21 +371,46 @@ export default function ActivityHero() {
                 {activity.images[active].caption}
               </p>
             </div>
+
+            {/* ── Mobile: Progress and Image Counter ── */}
+            <div className="lg:hidden w-full flex flex-col gap-2 mt-2">
+              {/* Progress bar */}
+              <div className="flex gap-1">
+                {activity.images.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-0.5 flex-1 rounded-full transition-all duration-500 ${
+                      i === active ? "bg-orange-500" : "bg-white/15"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Image counter and caption */}
+              <div className="flex items-center justify-between">
+                <p className="text-white/35 text-xs">
+                  {active + 1} / {activity.images.length}
+                </p>
+                <p className="text-white/35 text-xs italic">
+                  {activity.images[active].caption}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* ── Prev/Next arrows (desktop) ── */}
+        {/* ── Prev/Next arrows ── */}
         <button
           onClick={() => goTo((active - 1 + activity.images.length) % activity.images.length, true)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex w-10 h-10 items-center justify-center rounded-full bg-white/10 hover:bg-orange-500 text-white transition-all backdrop-blur-sm"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 sm:w-10 h-8 sm:h-10 items-center justify-center rounded-full bg-white/10 hover:bg-orange-500 text-white transition-all backdrop-blur-sm flex"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
         <button
           onClick={() => goTo((active + 1) % activity.images.length, true)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex w-10 h-10 items-center justify-center rounded-full bg-white/10 hover:bg-orange-500 text-white transition-all backdrop-blur-sm"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 sm:w-10 h-8 sm:h-10 items-center justify-center rounded-full bg-white/10 hover:bg-orange-500 text-white transition-all backdrop-blur-sm flex"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
 
         {/* ── Scroll hint ── */}

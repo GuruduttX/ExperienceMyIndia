@@ -44,7 +44,7 @@ export default function TripOptions() {
         <section className="w-full bg-white pb-5 ">
             <div className="max-w-6xl mx-auto space-y-12">
 
-                {/* 🔥 Duration */}
+                {/*  Duration */}
                 <div>
                     <h3 className="text-lg md:text-xl font-semibold mb-5">
                         Choose Trip Duration
